@@ -156,12 +156,14 @@ URL:
     category_id: int,
     amount: float,
     operation_date: date,
+    created_date: date,
     description: str
 }
 ```
 Примечания:
 - Если пользователь не был авторизован, возвращает код ошибки 401
 - Если не указано описание (description), то всё равно вернуть это поле (будет равно пустой строке)
+- Поле created_date не указывается в запросе, в него записывается дата создания записи в базе данных
 
 ----
 ### Получние информации о операции
@@ -188,6 +190,7 @@ URL:
     category_id: int,
     amount: float,
     operation_date: date,
+    created_date: date,
     description: str
 }
 ```
@@ -231,6 +234,7 @@ URL:
     category_id: int,
     amount: float,
     operation_date: date,
+    created_date: date,
     description: str
 }
 ```
@@ -263,6 +267,7 @@ URL:
     category_id: int,
     amount: float,
     operation_date: date,
+    created_date: date,
     description: str
 }
 ```
@@ -440,6 +445,7 @@ end_date: date?
             number: int,
             id: int,
             operation_date: date,
+            created_date: date,
             amount: float,
             description: str,
             type_name: str,
