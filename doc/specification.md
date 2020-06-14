@@ -455,7 +455,7 @@ Query string:
 category_id: int?,
 page_size: int?,
 page: int?
-period: int?,
+period: str?,
 start_date: date?,
 end_date: date?
 ```
