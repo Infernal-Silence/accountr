@@ -6,6 +6,9 @@
 - [Авторизация](#авторизация)
 - [Выход из аккаунта](#выход-из-аккаунта)
 
+[**Работа с типами операций**](#работа-с-типами-операций)
+- [Получение типов](#получение-типов)
+
 [**Работа с операциями**](#работа-с-операциями)
 - [Создание операции](#создание-операции)
 - [Получние информации о операции](#получние-информации-о-операции)
@@ -130,6 +133,33 @@ URL: `/auth/logout/`
 [К оглавлению](#спецификация-api)
 
 ----
+## Работа с типами операций
+### Получение типов
+URL: `/types/`
+
+Метод: **GET**
+
+Запрос: **пустой**
+
+Код успешного ответа: **200**
+
+Ответ:
+```
+[
+    {
+        id: int,
+        name: str
+    }
+]
+```
+
+Примечания:
+- Если пользователь не был авторизован, тоже возвращает код ошибки 401
+
+----
+[К оглавлению](#спецификация-api)
+
+
 ## Работа с операциями
 ### Создание операции
 Требования: 
@@ -189,7 +219,7 @@ URL: `/operations/<id>`
 {
     id: int,
     user_id: int,
-    type_name: str,
+    type_id: int,
     category_id: int,
     amount: float,
     operation_date: date,
@@ -216,8 +246,7 @@ URL: `/operations/<id>`
 ```
 {
     id: int,
-    user_id: int,
-    type_name: str?,
+    type_id: int?,
     category_id: int?,
     amount: float?,
     operation_date: date?,
@@ -231,7 +260,7 @@ URL: `/operations/<id>`
 {
     id: int,
     user_id: int,
-    type_name: str,
+    type_id: int,
     category_id: int,
     amount: float,
     operation_date: date,
@@ -262,7 +291,7 @@ URL: `/operations/<id>`
 {
     id: int,
     user_id: int,
-    type_name: str,
+    type_id: int,
     category_id: int,
     amount: float,
     operation_date: date,
