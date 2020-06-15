@@ -195,9 +195,9 @@ URL:  `/operations/`
 {
     user_id: int,
     type_id: int,
-    category_id: int,
-    amount: float,
-    operation_date: date,
+    category_id: int?,
+    amount: float?,
+    operation_date: datetime,
     description: str?    
 }
 ```
@@ -266,7 +266,6 @@ URL: `/operations/<id>`
 Запрос:
 ```
 {
-    id: int,
     type_id: int?,
     category_id: int?,
     amount: float?,
@@ -307,19 +306,8 @@ URL: `/operations/<id>`
 
 Код успешного ответа: **200**
 
-Ответ:
-```
-{
-    id: int,
-    user_id: int,
-    type_id: int,
-    category_id: int,
-    amount: float,
-    operation_date: date,
-    created_date: date,
-    description: str
-}
-```
+Ответ: пустой
+
 Примечания:
 - Если пользователь не был авторизован, возвращает код ошибки 401
 - Если пользователь пытается удалить не свою операции, вовзращает код ошибки 403
@@ -432,7 +420,6 @@ URL: `/categories/<id>`
 Запрос:
 ```
 {
-    id: int,
     name: str?,
     parent_category_id: int?
 }
@@ -467,15 +454,8 @@ URL: `/categories/<id>`
 
 Код успешного ответа: **200**
 
-Ответ:
-```
-{
-    id: int,
-    name: str,
-    user_id: int,
-    parent_id: int?
-}
-```
+Ответ: пустой
+
 Примечания:
 - Если пользователь не был авторизован, возвращает код ошибки 401
 - Если пользователь пытается удалить созданную не им категорию, возвращает код ошибки 403
@@ -504,7 +484,7 @@ Query string:
 ```
 category_id: int?,
 page_size: int?,
-page: int?
+page: int?,
 period: str?,
 start_date: date?,
 end_date: date?
