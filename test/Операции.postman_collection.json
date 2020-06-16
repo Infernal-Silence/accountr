@@ -1,0 +1,179 @@
+{
+	"info": {
+		"_postman_id": "91210e71-e5fd-41e7-aaeb-ad42fd693f1d",
+		"name": "Операции",
+		"description": "red-studio\r\nОперации:\r\n- добавление\r\n- изменение\r\n- удаление\r\n- получение операции по ее id",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Создание операции",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\": \"int\",\r\n    \"type_id\": \"int\",\r\n    \"category_id\": \"int?\",\r\n    \"amount\": \"float?\",\r\n    \"operation_date\": \"datetime\",\r\n    \"description\": \"str?\"    \r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/operations",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"operations"
+					]
+				},
+				"description": "URL: /operations/\r\n\r\nМетод: POST\r\n\r\nЗапрос:\r\n\r\n{\r\n    user_id: int,\r\n    type_id: int,\r\n    category_id: int?,\r\n    amount: float?,\r\n    operation_date: datetime,\r\n    description: str?    \r\n}\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    user_id: int,\r\n    type_id: int,\r\n    category_id: int,\r\n    amount: float,\r\n    operation_date: date,\r\n    created_date: date,\r\n    description: str\r\n}\r\n\r\nКоды:\r\n201 - ОК\r\n401 - пользователь не авторизован"
+			},
+			"response": []
+		},
+		{
+			"name": "Изменение операции",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type_id\": \"int?\",\r\n    \"category_id\": \"int?\",\r\n    \"amount\": \"float?\",\r\n    \"operation_date\": \"datetime\",\r\n    \"description\": \"str?\"    \r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/operations/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"operations",
+						"1"
+					]
+				},
+				"description": "URL: /operations/<id>\r\n\r\nМетод: PATCH\r\n\r\nЗапрос:\r\n\r\n{\r\n    type_id: int?,\r\n    category_id: int?,\r\n    amount: float?,\r\n    operation_date: date?,\r\n    description: str?  \r\n}\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    user_id: int,\r\n    type_id: int,\r\n    category_id: int,\r\n    amount: float,\r\n    operation_date: date,\r\n    created_date: date,\r\n    description: str\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n404 - такого id не существует"
+			},
+			"response": []
+		},
+		{
+			"name": "Удаление операции",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/operations/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"operations",
+						"1"
+					]
+				},
+				"description": "URL: /operations/<id>\r\n\r\nМетод: DELETE\r\n\r\nЗапрос: пусто\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    user_id: int,\r\n    type_id: int,\r\n    category_id: int,\r\n    amount: float,\r\n    operation_date: date,\r\n    created_date: date,\r\n    description: str\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n404 - такого id не существует"
+			},
+			"response": []
+		},
+		{
+			"name": "Получние информации о операции",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\": \"int\",\r\n    \"type_id\": \"int\",\r\n    \"category_id\": \"int?\",\r\n    \"amount\": \"float?\",\r\n    \"operation_date\": \"datetime\",\r\n    \"description\": \"str?\"    \r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/operations/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"operations",
+						"1"
+					]
+				},
+				"description": "URL: /operations/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пусто\r\n\r\nОтвет:\r\n{\r\n    id: int,\r\n    user_id: int,\r\n    type_id: int,\r\n    category_id: int,\r\n    amount: float,\r\n    operation_date: date,\r\n    created_date: date,\r\n    description: str\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n404 - такого id не существует"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

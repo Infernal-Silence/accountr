@@ -1,0 +1,221 @@
+{
+	"info": {
+		"_postman_id": "efba770d-204d-47a1-8f4c-308e8ba646b1",
+		"name": "Категории",
+		"description": "red-studio\r\nОперации с категориями:\r\n- добавление категории\r\n- получение информации о категории\r\n- список категорий для пользователя\r\n- изменение категории\r\n- получение категории",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Создание категории",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"str\",\r\n    \"parent_category_id\": \"int?\"\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/categories",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"categories"
+					]
+				},
+				"description": "URL: /categories/\r\n\r\nМетод: POST\r\n\r\nЗапрос:\r\n\r\n{\r\n    name: str,\r\n    parent_category_id: int?\r\n}\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n201 - ОК\r\n401 - пользователь не авторизован\r\n400 - нет родительской категории"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение информации о категориях пользователя",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/categories",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"categories"
+					]
+				},
+				"description": "URL: /categories/\r\n     /users/<id>/categories\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n[\r\n    {\r\n        id: int,\r\n        name: str,\r\n        user_id: int,\r\n        parent_category_id: int?\r\n    }\r\n]\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован"
+			},
+			"response": []
+		},
+		{
+			"name": "Изменение категории",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"str?\",\r\n    \"parent_category_id\": \"int?\"\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/categories/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"categories",
+						"1"
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: PATCH\r\n\r\nЗапрос:\r\n\r\n{\r\n    name: str?,\r\n    parent_category_id: int?\r\n}\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n400 - родительская категория не существует\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - такого id не существует"
+			},
+			"response": []
+		},
+		{
+			"name": "Получние информации о категории",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\": \"int\",\r\n    \"type_id\": \"int\",\r\n    \"category_id\": \"int?\",\r\n    \"amount\": \"float?\",\r\n    \"operation_date\": \"datetime\",\r\n    \"description\": \"str?\"    \r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/categories/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"categories",
+						"1"
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
+			"name": "Удаление категории",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/categories/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"categories",
+						"1"
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: DELETE\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - удаление категории другого пользователя\r\n404 - такого id не существует"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

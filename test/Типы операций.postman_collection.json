@@ -1,0 +1,70 @@
+{
+	"info": {
+		"_postman_id": "ef5b4d85-84a4-437c-8342-00eef5e9acaf",
+		"name": "Типы операций",
+		"description": "red-studio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Получение всех типов",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/types",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"types"
+					]
+				},
+				"description": "URL: /types/\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nОтвет:\r\n\r\n[\r\n    {\r\n        id: int,\r\n        name: str\r\n    }\r\n]\r\n\r\n200 - ОК\r\n401 - пользователь не авторизован"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение типа",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/types/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"types",
+						"1"
+					]
+				},
+				"description": "URL: /types/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str\r\n}\r\n\r\n200 - ОК\r\n401 - пользователь не авторизован"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
