@@ -5,3 +5,5 @@ __pycache__/
 *.pyd
 *.pyo
 *.env
+*.sqlite*
+*.db
