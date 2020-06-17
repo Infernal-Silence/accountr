@@ -7,16 +7,16 @@ from flask import (
 from flask.views import MethodView
 from werkzeug.security import generate_password_hash
 
-from database import db
-from services.users import UserService, UsersService
-from auth import auth_required
+from accountr.database import db
+from accountr.services.users import UserService, UsersService
+from accountr.auth import auth_required
 
 
 bp = Blueprint('users', __name__)
 
 
 class UsersView(MethodView):
-	def post():
+	def post(self):
 		request_json = request.json
 		user_info = {
 			'first_name':request_json['first_name'],
@@ -33,9 +33,14 @@ class UsersView(MethodView):
 
 
 class UserView(MethodView):
-	def get(user_id):
-
-		return 
+	@auth_required
+	def get(self, user_id = None):
+		with db.connection as con:
+			service = UserService(con)
+			user = service.get_by_id(user_id)
+			if not user:
+				return  '', 404
+		return jsonify(user), 200
 
 bp.add_url_rule('/', view_func=UsersView.as_view('users'))
-bp.add_url_rule('/<int:user_id>/', view_func=UserView.as_view('user'))
+bp.add_url_rule('/', view_func=UserView.as_view('user'))

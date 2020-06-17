@@ -1,6 +1,6 @@
 import sqlite3
 
-class UsersSevice(object):
+class UsersService(object):
 	"""docstring for UsersSevice"""
 	def __init__(self, connection):
 		self.connection = connection
@@ -25,4 +25,16 @@ class UsersSevice(object):
 		created_user = cur.fetchone()
 		return dict(created_user)
 
-		
+class UserService(object):
+	def __init__(self, connection):
+		self.connection = connection
+	def get_by_id(self, user_id):
+		cur = self.connection.execute("""
+			SELECT id, first_name, last_name, email
+			FROM users
+			WHERE id = ?""",
+			(user_id,))
+		user = cur.fetchone()
+		if not user:
+			return  None
+		return dict(user)
