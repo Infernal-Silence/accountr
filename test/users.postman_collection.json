@@ -1,0 +1,152 @@
+{
+	"info": {
+		"_postman_id": "de187276-2e22-443b-93ed-77627ec9c76a",
+		"name": "Работа с пользователями",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Регистрация",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3fe48029-2697-47e1-af72-32b80abea2e0",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(201);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        email: \"user1@gmail.com\",\r",
+							"        first_name: \"user1\",\r",
+							"        last_name: \"user1\"\r",
+							"    });\r",
+							"    pm.expect(jsonData).to.have.property(\"id\");\r",
+							"    pm.globals.set(\"userId\", jsonData.id);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"user1@gmail.com\",\n\t\"password\": \"user1\",\n\t\"first_name\": \"user1\",\n\t\"last_name\": \"user1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/users",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Регистрация пользователя, который уже есть в базе",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e28b006-e3a5-4880-9ebe-f2131a3ff7b7",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(409);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"user1@gmail.com\",\n\t\"password\": \"user1\",\n\t\"first_name\": \"user1\",\n\t\"last_name\": \"user1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/users",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение пользователя с email user1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e779704f-b3fd-4129-8abd-2a24e3585318",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var userId = pm.globals.get(\"userId\");\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        id: userId,\r",
+							"        email: \"user1@gmail.com\",\r",
+							"        first_name: \"user1\",\r",
+							"        last_name: \"user1\"\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/users",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
