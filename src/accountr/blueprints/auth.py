@@ -30,3 +30,9 @@ def login():
         else:
             session['user_id'] = user_id
             return '', HTTPStatus.OK
+
+
+@bp.route('/logout', methods=['POST'])
+def logout():
+    session.clear()
+    return '', HTTPStatus.OK
