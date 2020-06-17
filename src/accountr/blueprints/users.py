@@ -29,7 +29,7 @@ class UsersView(MethodView):
 			created_user = service.add_new_user(user_info)
 			if not created_user:
 				return '',409
-		return jsonify(created_user), 200
+		return jsonify(created_user), 201
 
 
 class UserView(MethodView):
