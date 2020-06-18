@@ -17,12 +17,11 @@
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(pm.response.code).to.eql(201);\r",
 							"    pm.expect(jsonData).to.include({\r",
+							"        id:1,\r",
 							"        email: \"user1@gmail.com\",\r",
 							"        first_name: \"user1\",\r",
 							"        last_name: \"user1\"\r",
 							"    });\r",
-							"    pm.expect(jsonData).to.have.property(\"id\");\r",
-							"    pm.globals.set(\"userId\", jsonData.id);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -104,7 +103,99 @@
 			"response": []
 		},
 		{
-			"name": "Авторизация",
+			"name": "Авторизация с неправильным логином",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1f1cc1b0-fefc-4e6a-82cd-9b1135413744",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(403);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"uncorrect_email@gmail.com\",\n\t\"password\": \"user1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/auth/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Авторизация с неправильным паролем",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d42ce35c-95af-482c-9d76-8be9a138f3a1",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(403);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"user1@gmail.com\",\n\t\"password\": \"uncorrect_password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/auth/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Корректная авторизация",
 			"event": [
 				{
 					"listen": "test",
@@ -157,12 +248,11 @@
 					"script": {
 						"id": "e779704f-b3fd-4129-8abd-2a24e3585318",
 						"exec": [
-							"pm.test(\"Successful POST request\", function () {\r",
+							"pm.test(\"Successful GET request\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
-							"    var userId = pm.globals.get(\"userId\");\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
 							"    pm.expect(jsonData).to.include({\r",
-							"        id: userId,\r",
+							"        id: 1,\r",
 							"        email: \"user1@gmail.com\",\r",
 							"        first_name: \"user1\",\r",
 							"        last_name: \"user1\"\r",
@@ -194,12 +284,272 @@
 			"response": []
 		},
 		{
-			"name": "Выход из пользователя",
+			"name": "Регистрация при авторизации",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f533db61-1ce3-4571-9cf9-5ed640575469",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(201);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        id:2,\r",
+							"        email: \"user2@gmail.com\",\r",
+							"        first_name: \"user2\",\r",
+							"        last_name: \"user2\"\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"user2@gmail.com\",\n\t\"password\": \"user2\",\n\t\"first_name\": \"user2\",\n\t\"last_name\": \"user2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/users",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Выход из пользователя User 1",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"id": "48e0dfff-fe0a-47cd-bf30-62ef7a8aa602",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/auth/logout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение пользователя без авторизации",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "82a3d1ea-e85c-40d4-9b1f-292e4ca3b6fa",
+						"exec": [
+							"pm.test(\"Successful GET request\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(401);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/users",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Авторизация с email одного пользователя и password другого",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7d32832f-273c-464a-afb8-de3083ab0c83",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(403);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"user1@gmail.com\",\n\t\"password\": \"user2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/auth/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Корректная авторизация другого пользователя",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "69579188-4c1e-46f8-b6ba-b54ba83a5499",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"user1@gmail.com\",\n\t\"password\": \"user1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/auth/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение пользователя с email user2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7006d1ca-d7b1-4c54-8e3e-66246485124a",
+						"exec": [
+							"pm.test(\"Successful GET request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        id: 2,\r",
+							"        email: \"user2@gmail.com\",\r",
+							"        first_name: \"user2\",\r",
+							"        last_name: \"user2\"\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/users",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Выход из пользователя User 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "65aaf227-10fe-4c15-b23c-712e086dfe81",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
