@@ -1,4 +1,5 @@
-from sqlite3 import IntegrityError
+from http import HTTPStatus
+
 from flask import (
 	Blueprint,
 	jsonify,
@@ -7,8 +8,12 @@ from flask import (
 from flask.views import MethodView
 from werkzeug.security import generate_password_hash
 
-from accountr.database import db
-from accountr.services.users import UserService, UsersService
+from ..database import db
+from ..services.users import (
+	UsersService,
+	UserAlreadyExistError,
+	UserNotFoundError
+)
 from accountr.auth import auth_required
 
 
@@ -16,6 +21,10 @@ bp = Blueprint('users', __name__)
 
 
 class UsersView(MethodView):
+	"""Обработка запросов о работе с пользователями (/users)
+	post - регистрация
+	get - получение информации о пользователе"""
+
 	def post(self):
 		request_json = request.json
 		user_info = {
@@ -26,21 +35,20 @@ class UsersView(MethodView):
 			}
 		with db.connection as con:
 			service = UsersService(con)
-			created_user = service.add_new_user(user_info)
-			if not created_user:
-				return '',409
-		return jsonify(created_user), 201
+			try:
+				created_user = service.add_new_user(user_info)
+			except UserAlreadyExistError:
+				return '', HTTPStatus.CONFLICT
+		return jsonify(created_user), HTTPStatus.CREATED
 
-
-class UserView(MethodView):
 	@auth_required
 	def get(self, user_id = None):
 		with db.connection as con:
-			service = UserService(con)
-			user = service.get_by_id(user_id)
-			if not user:
-				return  '', 404
-		return jsonify(user), 200
+			service = UsersService(con)
+			try:
+				user = service.get_by_id(user_id)
+			except UserNotFoundError:
+				return '', HTTPStatus.NOT_FOUND
+		return jsonify(user), HTTPStatus.OK
 
 bp.add_url_rule('/', view_func=UsersView.as_view('users'))
-bp.add_url_rule('/', view_func=UserView.as_view('user'))
