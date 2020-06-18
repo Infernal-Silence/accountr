@@ -3,7 +3,7 @@ from http import HTTPStatus
 
 from flask import session
 
-from database import db
+from .database import db
 
 
 def auth_required(view_func):
