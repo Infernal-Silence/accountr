@@ -24,7 +24,7 @@ with sqlite3.connect(db_connection) as connection:
             id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
             user_id INTEGER NOT NULL REFERENCES users(id),
             name TEXT NOT NULL,
-            parent_id INTEGER NOT NULL,
+            parent_id INTEGER NULL,
             UNIQUE (user_id, name)
         );
         CREATE TABLE IF NOT EXISTS operations ( 
