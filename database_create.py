@@ -36,6 +36,8 @@ with sqlite3.connect(db_connection) as connection:
             description TEXT NOT NULL,
             operation_date DATETIME NOT NULL,
             created_date DATETIME NOT NULL
-        );    
+        );
+        INSERT INTO types (name) VALUES('доход');
+        INSERT INTO types (name) VALUES('расход');
     """)
     connection.commit()
