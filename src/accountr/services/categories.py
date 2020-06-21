@@ -100,13 +100,13 @@ class CategoriesService(BaseService):
             )
             cursor.execute("""
                 DELETE FROM categories WHERE id IN (
-                WITH RECURSIVE child (id, user_id) AS 
-                (SELECT ? id, ? user_id
-                  UNION ALL 
-                 SELECT categories.id, categories.user_id FROM categories, child 
-                        WHERE categories.parent_id = child.id and categories.user_id = child.user_id
-                )
-                SELECT id FROM child ORDER BY id DESC 
+                    WITH RECURSIVE child (id, user_id, parent_id) AS 
+                    (SELECT ? id, ? user_id, null parent_id
+                      UNION ALL 
+                     SELECT categories.id, categories.user_id, categories.parent_id FROM categories, child 
+                            WHERE categories.parent_id = child.id and categories.user_id = child.user_id
+                    )
+                    SELECT id FROM child ORDER BY parent_id DESC, id DESC
                 );                
             """, (category_id, user_id)
             )
