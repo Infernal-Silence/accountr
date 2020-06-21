@@ -11,8 +11,7 @@ from werkzeug.security import generate_password_hash
 from ..database import db
 from ..services.users import (
 	UsersService,
-	UserAlreadyExistError,
-	UserNotFoundError
+	UserAlreadyExistError
 )
 from accountr.auth import auth_required
 
@@ -42,13 +41,7 @@ class UsersView(MethodView):
 		return jsonify(created_user), HTTPStatus.CREATED
 
 	@auth_required
-	def get(self, user_id = None):
-		with db.connection as con:
-			service = UsersService(con)
-			try:
-				user = service.get_by_id(user_id)
-			except UserNotFoundError:
-				return '', HTTPStatus.NOT_FOUND
+	def get(self, user = None):
 		return jsonify(user), HTTPStatus.OK
 
 bp.add_url_rule('/', view_func=UsersView.as_view('users'))
