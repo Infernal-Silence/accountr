@@ -342,7 +342,7 @@ URL: `/categories/`
     id: int,
     name: str,
     user_id: int,
-    parent_category_id: int?
+    parent_id: int?
 }
 ```
 Примечания:
@@ -369,7 +369,7 @@ URL: `/categories/<id>`
     id: int,
     name: str,
     user_id: int,
-    parent_category_id: int?
+    parent_id: int?
 }
 ```
 Примечания:
@@ -397,7 +397,7 @@ URL: `/categories/`
         id: int,
         name: str,
         user_id: int,
-        parent_category_id: int?
+        parent_id: int?
     }
 ]
 ```
@@ -422,7 +422,7 @@ URL: `/categories/<id>`
 ```
 {
     name: str?,
-    parent_category_id: int?
+    parent_id: int?
 }
 ```
 Код успешного ответа: **200**
@@ -433,7 +433,7 @@ URL: `/categories/<id>`
     id: int,
     name: str,
     user_id: int,
-    parent_category_id: int?
+    parent_id: int?
 }
 ```
 Примечания:
@@ -513,7 +513,7 @@ end_date: date?
                     {
                         id: int,
                         name: str,
-                        parent_category_id: int?
+                        parent_id: int?
                     }
                 ]
         }
