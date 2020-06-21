@@ -24,16 +24,16 @@ with sqlite3.connect(db_connection) as connection:
             id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
             user_id INTEGER NOT NULL REFERENCES users(id),
             name TEXT NOT NULL,
-            parent_id INTEGER NOT NULL,
+            parent_id INTEGER NULL,
             UNIQUE (user_id, name)
         );
         CREATE TABLE IF NOT EXISTS operations ( 
             id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
             user_id INTEGER NOT NULL REFERENCES users(id),
             type_id INTEGER NOT NULL REFERENCES types(id),
-            category_id INTEGER NOT NULL REFERENCES categories(id),
-            amount INTEGER NOT NULL,
-            description TEXT NOT NULL,
+            category_id INTEGER NULL REFERENCES categories(id),
+            amount INTEGER NOT NULL DEFAULT 0,
+            description TEXT NULL,
             operation_date DATETIME NOT NULL,
             created_date DATETIME NOT NULL
         );    

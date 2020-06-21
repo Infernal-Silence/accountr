@@ -51,4 +51,4 @@ class UsersView(MethodView):
 				return '', HTTPStatus.NOT_FOUND
 		return jsonify(user), HTTPStatus.OK
 
-bp.add_url_rule('/', view_func=UsersView.as_view('users'))
+bp.add_url_rule('', view_func=UsersView.as_view('users'))
