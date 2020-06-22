@@ -17,7 +17,7 @@ class CategoriesService(BaseService):
         """
         with self.connection as con:
             cur = con.execute("""
-                SELECT id, name, parent_id 
+                SELECT id, name, parent_id, user_id 
                 FROM categories
                 WHERE user_id = ?
             """, (user_id,)
