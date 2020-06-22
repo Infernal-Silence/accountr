@@ -475,7 +475,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\": \"user1@gmail.com\",\n\t\"password\": \"user1\"\n}",
+					"raw": "{\n\t\"email\": \"user2@gmail.com\",\n\t\"password\": \"user2\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
