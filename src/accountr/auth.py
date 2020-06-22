@@ -26,5 +26,5 @@ def auth_required(view_func):
 			user = cur.fetchone()
 		if not user:
 			return '', HTTPStatus.UNAUTHORIZED
-		return view_func(*args, **kwargs, user=dict(user))
+		return view_func(*args, **kwargs, user = dict(user))
 	return wrapper
