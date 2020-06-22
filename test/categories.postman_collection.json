@@ -530,6 +530,69 @@
 					"response": []
 				},
 				{
+					"name": "Создание дочерней категории пивко id=7 user2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f1c54d46-e3e6-4d09-9bb8-5f2f97e43375",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(pm.response.code).to.eql(201);\r",
+									"    pm.expect(jsonData).to.include({\r",
+									"        id: 7, \r",
+									"        name: \"пивко\", \r",
+									"        parent_id: 6, \r",
+									"        user_id: 2 \r",
+									"    })\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"пивко\",\r\n    \"parent_id\": \"6\"\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/categories",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"categories"
+							]
+						},
+						"description": "URL: /categories/\r\n\r\nМетод: POST\r\n\r\nЗапрос:\r\n\r\n{\r\n    name: str,\r\n    parent_category_id: int?\r\n}\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n201 - ОК\r\n401 - пользователь не авторизован\r\n400 - нет родительской категории"
+					},
+					"response": []
+				},
+				{
 					"name": "Создание дочерней категории неверный родителяь (400)",
 					"event": [
 						{
@@ -940,20 +1003,20 @@
 			"response": []
 		},
 		{
-			"name": "Изменение наименования категории id=2 кафе -> займы",
+			"name": "Изменение названия категории id=2 кафе -> займы",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "c2102b80-3172-4aca-9a9f-c44b72b87cff",
+						"id": "48a73947-6137-43e7-a660-e84cb62c7b40",
 						"exec": [
 							"pm.test(\"Successful PATCH category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
 							"    pm.expect(jsonData).to.include({\r",
-							"        id: 1, \r",
-							"        name: \"моя еда!\", \r",
-							"        parent_id: null, \r",
+							"        id: 2, \r",
+							"        name: \"займы\", \r",
+							"        parent_id: 1, \r",
 							"        user_id: 1 \r",
 							"    })\r",
 							"});\r",
@@ -1016,7 +1079,7 @@
 							"    pm.expect(pm.response.code).to.eql(200);\r",
 							"    pm.expect(jsonData).to.include({\r",
 							"        id: 2, \r",
-							"        name: \"кафе\", \r",
+							"        name: \"займы\", \r",
 							"        parent_id: 4, \r",
 							"        user_id: 1 \r",
 							"    })\r",
@@ -1099,7 +1162,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"parent_id\": \"5\"\r\n}",
+					"raw": "{\r\n    \"parent_id\": \"7\"\r\n}",
 					"options": {
 						"raw": {}
 					}
@@ -1161,7 +1224,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/categories/5",
+					"raw": "http://127.0.0.1:5000/categories/6",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -1172,7 +1235,7 @@
 					"port": "5000",
 					"path": [
 						"categories",
-						"5"
+						"6"
 					]
 				},
 				"description": "URL: /categories/<id>\r\n\r\nМетод: PATCH\r\n\r\nЗапрос:\r\n\r\n{\r\n    name: str?,\r\n    parent_category_id: int?\r\n}\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n400 - родительская категория не существует\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - такого id не существует"
@@ -1544,7 +1607,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/categories/5",
+					"raw": "http://127.0.0.1:5000/categories/6",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -1555,7 +1618,7 @@
 					"port": "5000",
 					"path": [
 						"categories",
-						"5"
+						"6"
 					]
 				},
 				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
@@ -1921,7 +1984,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/categories/5",
+					"raw": "http://127.0.0.1:5000/categories/7",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -1932,7 +1995,7 @@
 					"port": "5000",
 					"path": [
 						"categories",
-						"5"
+						"7"
 					]
 				},
 				"description": "URL: /categories/<id>\r\n\r\nМетод: DELETE\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - удаление категории другого пользователя\r\n404 - такого id не существует"
