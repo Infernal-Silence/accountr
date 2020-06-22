@@ -1,0 +1,2103 @@
+{
+	"info": {
+		"_postman_id": "efba770d-204d-47a1-8f4c-308e8ba646b1",
+		"name": "Categories",
+		"description": "red-studio\r\nОперации с категориями:\r\n- добавление категории\r\n- получение информации о категории\r\n- список категорий для пользователя\r\n- изменение категории\r\n- получение категории",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User1",
+			"item": [
+				{
+					"name": "Login user1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7196fe4a-8d68-4a6e-aca6-a282c5e38b68",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"user1@gmail.com\",\n\t\"password\": \"user1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/auth/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание главной категории еда id=1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0264f9a7-6428-41ef-8d5d-6d6caf49fdcf",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(pm.response.code).to.eql(201);\r",
+									"    pm.expect(jsonData).to.include({\r",
+									"        id: 1, \r",
+									"        name: \"еда\", \r",
+									"        parent_id: null, \r",
+									"        user_id: 1 \r",
+									"    })\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"еда\"\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/categories",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"categories"
+							]
+						},
+						"description": "URL: /categories/\r\n\r\nМетод: POST\r\n\r\nЗапрос:\r\n\r\n{\r\n    name: str,\r\n    parent_category_id: int?\r\n}\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n201 - ОК\r\n401 - пользователь не авторизован\r\n400 - нет родительской категории"
+					},
+					"response": []
+				},
+				{
+					"name": "Создание дочерней категории кафе id=2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fc568078-ca74-463f-9ebc-5521e6105714",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(pm.response.code).to.eql(201);\r",
+									"    pm.expect(jsonData).to.include({\r",
+									"        id: 2, \r",
+									"        name: \"кафе\", \r",
+									"        parent_id: 1, \r",
+									"        user_id: 1 \r",
+									"    })\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"кафе\",\r\n    \"parent_id\": \"1\"\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/categories",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"categories"
+							]
+						},
+						"description": "URL: /categories/\r\n\r\nМетод: POST\r\n\r\nЗапрос:\r\n\r\n{\r\n    name: str,\r\n    parent_category_id: int?\r\n}\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n201 - ОК\r\n401 - пользователь не авторизован\r\n400 - нет родительской категории"
+					},
+					"response": []
+				},
+				{
+					"name": "Создание дочерней категории продукты id=3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cd5e65f0-cc2f-42d0-9636-ebcd741970c1",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(pm.response.code).to.eql(201);\r",
+									"    pm.expect(jsonData).to.include({\r",
+									"        id: 3, \r",
+									"        name: \"продукты\", \r",
+									"        parent_id: 1, \r",
+									"        user_id: 1 \r",
+									"    })\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"продукты\",\r\n    \"parent_id\": \"1\"\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/categories",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"categories"
+							]
+						},
+						"description": "URL: /categories/\r\n\r\nМетод: POST\r\n\r\nЗапрос:\r\n\r\n{\r\n    name: str,\r\n    parent_category_id: int?\r\n}\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n201 - ОК\r\n401 - пользователь не авторизован\r\n400 - нет родительской категории"
+					},
+					"response": []
+				},
+				{
+					"name": "Создание главной категории долги id=4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f8e93fa2-7c03-4917-9301-e8b9a30c6952",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(pm.response.code).to.eql(201);\r",
+									"    pm.expect(jsonData).to.include({\r",
+									"        id: 4, \r",
+									"        name: \"долги\", \r",
+									"        parent_id: null, \r",
+									"        user_id: 1 \r",
+									"    })\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"долги\",\r\n    \"parent_id\": null\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/categories",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"categories"
+							]
+						},
+						"description": "URL: /categories/\r\n\r\nМетод: POST\r\n\r\nЗапрос:\r\n\r\n{\r\n    name: str,\r\n    parent_category_id: int?\r\n}\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n201 - ОК\r\n401 - пользователь не авторизован\r\n400 - нет родительской категории"
+					},
+					"response": []
+				},
+				{
+					"name": "Создание главной категории кредиты id=5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "98243a1c-6d4b-401b-ba1a-163fe5dd4fb0",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(pm.response.code).to.eql(201);\r",
+									"    pm.expect(jsonData).to.include({\r",
+									"        id: 5, \r",
+									"        name: \"кредиты\", \r",
+									"        parent_id: 4, \r",
+									"        user_id: 1 \r",
+									"    })\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"кредиты\",\r\n    \"parent_id\": 4\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/categories",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"categories"
+							]
+						},
+						"description": "URL: /categories/\r\n\r\nМетод: POST\r\n\r\nЗапрос:\r\n\r\n{\r\n    name: str,\r\n    parent_category_id: int?\r\n}\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n201 - ОК\r\n401 - пользователь не авторизован\r\n400 - нет родительской категории"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout user1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0acb2939-a29b-4eef-85e8-5d9547980597",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"user1@gmail.com\",\n\t\"password\": \"user1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/auth/logout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "User2",
+			"item": [
+				{
+					"name": "Login user2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6451619d-432f-4839-b6eb-ff6e7fe1766d",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"user2@gmail.com\",\n\t\"password\": \"user2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/auth/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание главной категории еда id=6 user2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "08981ff0-ce60-47bf-bf90-445084c09140",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(pm.response.code).to.eql(201);\r",
+									"    pm.expect(jsonData).to.include({\r",
+									"        id: 6, \r",
+									"        name: \"еда\", \r",
+									"        parent_id: null, \r",
+									"        user_id: 2 \r",
+									"    })\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"еда\",\r\n    \"parent__id\": null\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/categories",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"categories"
+							]
+						},
+						"description": "URL: /categories/\r\n\r\nМетод: POST\r\n\r\nЗапрос:\r\n\r\n{\r\n    name: str,\r\n    parent_category_id: int?\r\n}\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n201 - ОК\r\n401 - пользователь не авторизован\r\n400 - нет родительской категории"
+					},
+					"response": []
+				},
+				{
+					"name": "Создание дочерней категории неверный родителяь (400)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32c664cd-460e-4975-8fea-562dd975f677",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"мак\",\r\n    \"parent_id\": \"-1\"\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/categories",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"categories"
+							]
+						},
+						"description": "URL: /categories/\r\n\r\nМетод: POST\r\n\r\nЗапрос:\r\n\r\n{\r\n    name: str,\r\n    parent_category_id: int?\r\n}\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n201 - ОК\r\n401 - пользователь не авторизован\r\n400 - нет родительской категории"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout user2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4bfc612b-e78b-440b-8f9c-ad8f456dc2d6",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"user1@gmail.com\",\n\t\"password\": \"user1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/auth/logout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Создание категории не авторизованным пользователем (401)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "86f690c4-c28c-42ae-8263-6a36b9d0d9f6",
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(401);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"мак\",\r\n    \"parent_id\": \"-1\"\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/categories",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"categories"
+					]
+				},
+				"description": "URL: /categories/\r\n\r\nМетод: POST\r\n\r\nЗапрос:\r\n\r\n{\r\n    name: str,\r\n    parent_category_id: int?\r\n}\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n201 - ОК\r\n401 - пользователь не авторизован\r\n400 - нет родительской категории"
+			},
+			"response": []
+		},
+		{
+			"name": "Login user1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cbdd7aaf-e142-4f45-b80e-59bf08f07b62",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"user1@gmail.com\",\n\t\"password\": \"user1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/auth/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Все категориии пользователя",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "625cf517-2d7a-410d-b056-d221f2cc21b2",
+						"exec": [
+							"pm.test(\"Successful GET categories request\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/categories",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"categories"
+					]
+				},
+				"description": "URL: /categories/\r\n     /users/<id>/categories\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n[\r\n    {\r\n        id: int,\r\n        name: str,\r\n        user_id: int,\r\n        parent_category_id: int?\r\n    }\r\n]\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован"
+			},
+			"response": []
+		},
+		{
+			"name": "Logout user1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "09f5b94f-1f7f-4659-b82e-f1d9aa9633f4",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"user1@gmail.com\",\n\t\"password\": \"user1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/auth/logout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Все категориии не авторизованнного пользователя",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5a06ad3f-b84b-4cb6-9828-29639debcd5f",
+						"exec": [
+							"pm.test(\"GET categories for unauthorized user\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(401);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/categories",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"categories"
+					]
+				},
+				"description": "URL: /categories/\r\n     /users/<id>/categories\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n[\r\n    {\r\n        id: int,\r\n        name: str,\r\n        user_id: int,\r\n        parent_category_id: int?\r\n    }\r\n]\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован"
+			},
+			"response": []
+		},
+		{
+			"name": "Login user1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3e70de83-5098-4068-8534-f60d61aa8974",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"user1@gmail.com\",\n\t\"password\": \"user1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/auth/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Изменение наименования категории id=2 кафе -> займы",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c2102b80-3172-4aca-9a9f-c44b72b87cff",
+						"exec": [
+							"pm.test(\"Successful PATCH category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        id: 1, \r",
+							"        name: \"моя еда!\", \r",
+							"        parent_id: null, \r",
+							"        user_id: 1 \r",
+							"    })\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"займы\"\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/categories/2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"categories",
+						"2"
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: PATCH\r\n\r\nЗапрос:\r\n\r\n{\r\n    name: str?,\r\n    parent_category_id: int?\r\n}\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n400 - родительская категория не существует\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - такого id не существует"
+			},
+			"response": []
+		},
+		{
+			"name": "Изменение родителя категории займы id=2 -> долги id=4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5c65be56-a7bd-4a90-9b84-31f836d80341",
+						"exec": [
+							"pm.test(\"Successful PATCH category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        id: 2, \r",
+							"        name: \"кафе\", \r",
+							"        parent_id: 4, \r",
+							"        user_id: 1 \r",
+							"    })\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"parent_id\": \"4\"\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/categories/2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"categories",
+						"2"
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: PATCH\r\n\r\nЗапрос:\r\n\r\n{\r\n    name: str?,\r\n    parent_category_id: int?\r\n}\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n400 - родительская категория не существует\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - такого id не существует"
+			},
+			"response": []
+		},
+		{
+			"name": "Изменение на родителя другого пользователя",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "886a4c19-1c5b-469c-b7cc-8e9157f280d0",
+						"exec": [
+							"pm.test(\"Successful PATCH category\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(403);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"parent_id\": \"5\"\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/categories/2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"categories",
+						"2"
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: PATCH\r\n\r\nЗапрос:\r\n\r\n{\r\n    name: str?,\r\n    parent_category_id: int?\r\n}\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n400 - родительская категория не существует\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - такого id не существует"
+			},
+			"response": []
+		},
+		{
+			"name": "Изменение категории другого пользователя",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed7a1216-8ba0-47a0-a691-047565228d0e",
+						"exec": [
+							"pm.test(\"Successful PATCH category\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(403);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"parent_id\": \"1\"\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/categories/5",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"categories",
+						"5"
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: PATCH\r\n\r\nЗапрос:\r\n\r\n{\r\n    name: str?,\r\n    parent_category_id: int?\r\n}\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n400 - родительская категория не существует\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - такого id не существует"
+			},
+			"response": []
+		},
+		{
+			"name": "Изменение категории, которой нет",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2ca01e15-1513-49ab-bc49-66553570bae2",
+						"exec": [
+							"pm.test(\"Status code of PATCH is 404\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"parent_id\": \"888\"\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/categories/-1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"categories",
+						"-1"
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: PATCH\r\n\r\nЗапрос:\r\n\r\n{\r\n    name: str?,\r\n    parent_category_id: int?\r\n}\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n400 - родительская категория не существует\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - такого id не существует"
+			},
+			"response": []
+		},
+		{
+			"name": "Изменение на родителя, которого нет",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "89bd9577-f297-47ef-a8f2-95325b7ce3f4",
+						"exec": [
+							"pm.test(\"Status code of PATCH is 400 \", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"parent_id\": \"-1\"\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/categories/2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"categories",
+						"2"
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: PATCH\r\n\r\nЗапрос:\r\n\r\n{\r\n    name: str?,\r\n    parent_category_id: int?\r\n}\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n400 - родительская категория не существует\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - такого id не существует"
+			},
+			"response": []
+		},
+		{
+			"name": "Logout user1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5795692e-fc47-4280-afbe-8df849c4a862",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"user1@gmail.com\",\n\t\"password\": \"user1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/auth/logout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Изменение не авторизованного пользователя",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3564dbad-6e30-4ccb-b576-cf616a415cf4",
+						"exec": [
+							"pm.test(\"Status code of PATCH is 400 \", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(401);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"parent_id\": \"-1\"\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/categories/2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"categories",
+						"2"
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: PATCH\r\n\r\nЗапрос:\r\n\r\n{\r\n    name: str?,\r\n    parent_category_id: int?\r\n}\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n400 - родительская категория не существует\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - такого id не существует"
+			},
+			"response": []
+		},
+		{
+			"name": "Login user1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "39e2fee8-d214-4096-84fb-1673285d0d04",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"user1@gmail.com\",\n\t\"password\": \"user1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/auth/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение информации о категории",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4b9ac57c-b004-4b7d-8243-ea63542f82de",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        id: 1, \r",
+							"        name: \"моя еда!\", \r",
+							"        parent_id: null, \r",
+							"        user_id: 1 \r",
+							"    })\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\": \"int\",\r\n    \"type_id\": \"int\",\r\n    \"category_id\": \"int?\",\r\n    \"amount\": \"float?\",\r\n    \"operation_date\": \"datetime\",\r\n    \"description\": \"str?\"    \r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/categories/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"categories",
+						"1"
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение информации о категории другого пользователя",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a9bc4d53-e7f2-4982-b47d-643b31fed89d",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(403);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/categories/5",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"categories",
+						"5"
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение информации о категории, которой нет",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "42ae497d-2c52-4c28-803e-cb60df7748be",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/categories/-1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"categories",
+						"-1"
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
+			"name": "Logout user1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "946a5acc-5682-4ca9-bd05-df56239d8cd0",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"user1@gmail.com\",\n\t\"password\": \"user1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/auth/logout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение информации о категории не авторизованного пользователя",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "313ee0c6-a823-43b1-8a42-86324f4d906c",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(401);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\": \"int\",\r\n    \"type_id\": \"int\",\r\n    \"category_id\": \"int?\",\r\n    \"amount\": \"float?\",\r\n    \"operation_date\": \"datetime\",\r\n    \"description\": \"str?\"    \r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/categories/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"categories",
+						"1"
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
+			"name": "Login user1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1db486c0-8f5b-4f63-9d9c-df898c983c90",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"user1@gmail.com\",\n\t\"password\": \"user1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/auth/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Удаление дочерней категории",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7a1e7ed2-db3b-49d4-a363-08237450f8d6",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/categories/3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"categories",
+						"3"
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: DELETE\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - удаление категории другого пользователя\r\n404 - такого id не существует"
+			},
+			"response": []
+		},
+		{
+			"name": "Удаление главной категории и дочерних с операциями",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "461da62e-e53e-4504-aed9-63983278149d",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/categories/4",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"categories",
+						"4"
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: DELETE\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - удаление категории другого пользователя\r\n404 - такого id не существует"
+			},
+			"response": []
+		},
+		{
+			"name": "Удаление категории другого пользователя",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "35fe55e4-6b69-47e5-98df-643bbc182c17",
+						"exec": [
+							"pm.test(\"Status code is 403\", function () {\r",
+							"    pm.response.to.have.status(403);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/categories/5",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"categories",
+						"5"
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: DELETE\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - удаление категории другого пользователя\r\n404 - такого id не существует"
+			},
+			"response": []
+		},
+		{
+			"name": "Удаление не существующей категории",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f1175f0f-e01a-434c-a42a-17349363014e",
+						"exec": [
+							"pm.test(\"Status code is 403\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/categories/-1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"categories",
+						"-1"
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: DELETE\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - удаление категории другого пользователя\r\n404 - такого id не существует"
+			},
+			"response": []
+		},
+		{
+			"name": "Logout user1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8901ebc7-320b-47e1-86f6-b6fb8e93059d",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"user1@gmail.com\",\n\t\"password\": \"user1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/auth/logout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Удаление категории не авторизованным пользователем",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1a61b344-0575-417c-81af-a99a78a98fe1",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/categories/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"categories",
+						"1"
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: DELETE\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - удаление категории другого пользователя\r\n404 - такого id не существует"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

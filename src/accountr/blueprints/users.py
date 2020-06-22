@@ -44,4 +44,4 @@ class UsersView(MethodView):
 	def get(self, user = None):
 		return jsonify(user), HTTPStatus.OK
 
-bp.add_url_rule('/', view_func=UsersView.as_view('users'))
+bp.add_url_rule('', view_func=UsersView.as_view('users'))
