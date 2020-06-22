@@ -987,6 +987,31 @@
 		},
 		{
 			"name": "Изменение всех полей операции",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0ba20d5a-a349-4e3a-9a1b-9962cc365c82",
+						"exec": [
+							"pm.test(\"Successful PATCH request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        amount: 666.0,\r",
+							"        category_id: 6,\r",
+							"        created_date: \"2020-06-22\",\r",
+							"        description: \"измененная операция\",\r",
+							"        id: 1,\r",
+							"        operation_date: \"2020-06-26\",\r",
+							"        type_id: 2,\r",
+							"        user_id: 2\r",
+							"    })\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {
 					"content-type": true
@@ -1003,7 +1028,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"type_id\": \"1\",\r\n    \"category_id\": \"1\",\r\n    \"amount\": \"666\",\r\n    \"operation_date\": \"2020-06-20\",\r\n    \"description\": \"измененная операция\"    \r\n}",
+					"raw": "{\r\n    \"type_id\": \"2\",\r\n    \"amount\": \"666\",\r\n    \"category_id\": \"6\",\r\n    \"operation_date\": \"2020-06-26\",\r\n    \"description\": \"измененная операция\"    \r\n}",
 					"options": {
 						"raw": {}
 					}
@@ -1029,6 +1054,20 @@
 		},
 		{
 			"name": "Изменение всех полей операции другого пользователя",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "99dba090-ec1b-4ced-afd6-862ad8a2c26a",
+						"exec": [
+							"pm.test(\"Status code is 403\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(403);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {
 					"content-type": true
@@ -1045,13 +1084,13 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"type_id\": \"1\",\r\n    \"category_id\": \"1\",\r\n    \"amount\": \"666\",\r\n    \"operation_date\": \"2020-06-20\",\r\n    \"description\": \"измененная операция\"    \r\n}",
+					"raw": "{\r\n    \"type_id\": \"1\",\r\n    \"category_id\": \"1\",\r\n    \"amount\": \"888\",\r\n    \"operation_date\": \"2020-06-20\",\r\n    \"description\": \"измененная операция\"    \r\n}",
 					"options": {
 						"raw": {}
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/operations/888",
+					"raw": "http://127.0.0.1:5000/operations/3",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -1062,7 +1101,7 @@
 					"port": "5000",
 					"path": [
 						"operations",
-						"888"
+						"3"
 					]
 				},
 				"description": "URL: /operations/<id>\r\n\r\nМетод: PATCH\r\n\r\nЗапрос:\r\n\r\n{\r\n    type_id: int?,\r\n    category_id: int?,\r\n    amount: float?,\r\n    operation_date: date?,\r\n    description: str?  \r\n}\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    user_id: int,\r\n    type_id: int,\r\n    category_id: int,\r\n    amount: float,\r\n    operation_date: date,\r\n    created_date: date,\r\n    description: str\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - операция другого пользователя\r\n404 - такого id не существует"
@@ -1071,6 +1110,20 @@
 		},
 		{
 			"name": "Изменение полей не существующей операции",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3f056d38-95f9-486e-abf6-46d48888f5c1",
+						"exec": [
+							"pm.test(\"Status code is 403\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {
 					"content-type": true
@@ -1113,6 +1166,20 @@
 		},
 		{
 			"name": "Изменение типа на не существующий",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "630937b5-2450-4d33-b78b-32fd534ae5d9",
+						"exec": [
+							"pm.test(\"Status code is 403\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {
 					"content-type": true
@@ -1155,6 +1222,20 @@
 		},
 		{
 			"name": "Изменение категории на не существующую",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b034cdc6-d837-4c56-b4ba-f9024608800f",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {
 					"content-type": true
@@ -1265,7 +1346,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/operations/-1",
+					"raw": "http://127.0.0.1:5000/operations/1",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -1276,7 +1357,7 @@
 					"port": "5000",
 					"path": [
 						"operations",
-						"-1"
+						"1"
 					]
 				},
 				"description": "URL: /operations/<id>\r\n\r\nМетод: PATCH\r\n\r\nЗапрос:\r\n\r\n{\r\n    type_id: int?,\r\n    category_id: int?,\r\n    amount: float?,\r\n    operation_date: date?,\r\n    description: str?  \r\n}\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    user_id: int,\r\n    type_id: int,\r\n    category_id: int,\r\n    amount: float,\r\n    operation_date: date,\r\n    created_date: date,\r\n    description: str\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - операция другого пользователя\r\n404 - такого id не существует"
@@ -1331,6 +1412,20 @@
 		},
 		{
 			"name": "Удаление операции",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e4f3b2d5-06bf-4103-b760-996e4b506bdd",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {
 					"content-type": true
@@ -1483,7 +1578,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/operations/-1",
+					"raw": "http://127.0.0.1:5000/operations/1",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -1494,7 +1589,7 @@
 					"port": "5000",
 					"path": [
 						"operations",
-						"-1"
+						"1"
 					]
 				},
 				"description": "URL: /operations/<id>\r\n\r\nМетод: DELETE\r\n\r\nЗапрос: пусто\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    user_id: int,\r\n    type_id: int,\r\n    category_id: int,\r\n    amount: float,\r\n    operation_date: date,\r\n    created_date: date,\r\n    description: str\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n404 - такого id не существует"
