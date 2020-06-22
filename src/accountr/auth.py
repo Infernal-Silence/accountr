@@ -8,7 +8,7 @@ from .database import db
 
 def auth_required(view_func):
 	'''Декоратор проверки авторизации пользователя.
-	Добавляет параметр user_id к декорируемой функции
+	Добавляет параметр user с данными пользователя (в словаре) к декорируемой функции
 	Если пользователь не авторизирован, возвращается код ошибки 401'''
 	@wraps(view_func)
 	def wrapper(*args, **kwargs):
@@ -17,7 +17,7 @@ def auth_required(view_func):
 			return '', HTTPStatus.UNAUTHORIZED
 		with db.connection as con:
 			cur = con.execute("""
-				SELECT users.id 
+				SELECT id, first_name, last_name, email
 				FROM users 
 				WHERE id = ?
 				LIMIT 1;""",

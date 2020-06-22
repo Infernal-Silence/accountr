@@ -10,9 +10,6 @@ class UsersError(ServiceError):
 class UserAlreadyExistError(UsersError):
 	pass
 
-class UserNotFoundError(UsersError):
-	pass
-
 class UsersService(BaseService):
 	"""Обработка работы с пользователями (/users)
 	add_new_user - добавляет нового пользователя в базу данных
@@ -41,16 +38,3 @@ class UsersService(BaseService):
 		created_user = cur.fetchone()
 		return dict(created_user)
 
-	def get_by_id(self, user_id):
-		"""Получает информацию о пользователе с id = user_id из базы данных,
-		возвращает сущность пользователя (без пароля) в виде словаря"""
-		cur = self.connection.execute("""
-			SELECT id, first_name, last_name, email
-			FROM users
-			WHERE id = ?""",
-			(user_id,)
-		)
-		user = cur.fetchone()
-		if not user:
-			raise UserNotFoundError
-		return dict(user)
