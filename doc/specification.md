@@ -8,6 +8,7 @@
 
 [**Работа с типами операций**](#работа-с-типами-операций)
 - [Получение всех типов](#получение-всех-типов)
+- [Получение типа](#получение-типа)
 
 [**Работа с операциями**](#работа-с-операциями)
 - [Создание операции](#создание-операции)
@@ -26,6 +27,8 @@
 - [Получение отчёта](#получение-отчёта)
 ---
 **?** - *необязательный парметр*
+
+**Формат времени:** `YYYY-MM-DD HH:MM:SS` [(ISO)](https://yandex.ru/support/partnermarket/export/date-format.html)
 
 *Предполагается, что в запросе есть все обязательные параметры и их типы указаны корректно*
 
@@ -195,9 +198,9 @@ URL:  `/operations/`
 {
     user_id: int,
     type_id: int,
+    amount: int,
+    operation_date: str,
     category_id: int?,
-    amount: float?,
-    operation_date: datetime,
     description: str?    
 }
 ```
@@ -210,9 +213,9 @@ URL:  `/operations/`
     user_id: int,
     type_id: int,
     category_id: int,
-    amount: float,
-    operation_date: date,
-    created_date: date,
+    amount: int,
+    operation_date: str,
+    created_date: str,
     description: str
 }
 ```
@@ -242,9 +245,9 @@ URL: `/operations/<id>`
     user_id: int,
     type_id: int,
     category_id: int,
-    amount: float,
-    operation_date: date,
-    created_date: date,
+    amount: int,
+    operation_date: str,
+    created_date: str,
     description: str
 }
 ```
@@ -268,8 +271,8 @@ URL: `/operations/<id>`
 {
     type_id: int?,
     category_id: int?,
-    amount: float?,
-    operation_date: date?,
+    amount: int?,
+    operation_date: str?,
     description: str?  
 }
 ```
@@ -282,9 +285,9 @@ URL: `/operations/<id>`
     user_id: int,
     type_id: int,
     category_id: int,
-    amount: float,
-    operation_date: date,
-    created_date: date,
+    amount: int,
+    operation_date: str,
+    created_date: str,
     description: str
 }
 ```
@@ -349,6 +352,8 @@ URL: `/categories/`
 - Если пользователь не был авторизован, возвращает код ошибки 401
 - Если родительской категорией указана категория, созданная не пользователем, возвращает код ошибки 400
 - Если родительской категории не существует, возвращает код ошибки 400
+- Название категории уникально для каждого пользователя, но может быть одинаково для разных пользователей
+
 ----
 ### Получение информации о категории
 Требования:
@@ -376,6 +381,7 @@ URL: `/categories/<id>`
 - Если пользователь не был авторизован, возвращает код ошибки 401
 - Если пользователь пытается просмотреть созданную не им категорию, возвращает код ошибки 403
 - Если категории с данным id не существует, возвращает код ошибки 404
+
 ----
 ### Получение созданных категорий
 Требования:
@@ -442,6 +448,7 @@ URL: `/categories/<id>`
 - Если родительской категорией указана категория, созданная не пользователем, возвращает код ошибки 400
 - Если родительской категории не существует, возвращает код ошибки 400
 - Если категории с данным id не существует, возвращает код ошибки 404
+- Название категории уникально для каждого пользователя, но может быть одинаково для разных пользователей
 
 ----
 ### Удаление категории
@@ -475,9 +482,7 @@ URL: `/categories/<id>`
  - пользователь авторизован
  - список операций в ответе отсортирован по возрастанию даты операции
 
-URL:
-- `/users/<user_id>/report/
-- `/report/`
+URL: `/report/`
 
 Метод: **GET**
 
@@ -489,8 +494,8 @@ category_id: int?,
 page_size: int?,
 page: int?,
 period: str?,
-start_date: date?,
-end_date: date?
+start_date: str?,
+end_date: str?
 ```
 
 Код успешного ответа: **200**
@@ -498,14 +503,14 @@ end_date: date?
 Ответ:
 ```
 {
-    total_amount: float,
+    total_amount: int,
     operations:
     [   
         {
             id: int,
-            operation_date: date,
-            created_date: date,
-            amount: float,
+            operation_date: str,
+            created_date: str,
+            amount: int,
             description: str,
             type_name: str,
             categories: 
@@ -533,7 +538,6 @@ end_date: date?
 }
 ```
 
-----
 ----
 [К оглавлению](#спецификация-api)
 
