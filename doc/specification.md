@@ -334,7 +334,7 @@ URL: `/categories/`
 ```
 {
     name: str,
-    parent_category_id: int?
+    parent_id: int?
 }
 ```
 Код успешного ответа: **201**
