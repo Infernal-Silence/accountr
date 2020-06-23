@@ -34,8 +34,8 @@ with sqlite3.connect(db_connection) as connection:
             category_id INTEGER NULL REFERENCES categories(id),
             amount INTEGER NOT NULL DEFAULT 0,
             description TEXT NULL,
-            operation_date DATETIME NOT NULL,
-            created_date DATETIME NOT NULL
+            operation_date TEXT NOT NULL,
+            created_date TEXT NOT NULL
         );
         INSERT INTO types (name) VALUES('income');
         INSERT INTO types (name) VALUES('expenditure');
