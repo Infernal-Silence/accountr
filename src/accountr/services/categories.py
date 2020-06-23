@@ -44,7 +44,7 @@ class CategoriesService(BaseService):
 
     def create_category(self, user_id, category):
         """
-        Создает категорию c параметрами category для заданного user_id
+        Создает категорию c параметрами из category для заданного user_id
         Возвращает созданную категорию в виде словаря
         """
         result = {}
@@ -65,7 +65,7 @@ class CategoriesService(BaseService):
 
     def update_category(self, category_id, category):
         """
-        Изменят категорию c параметрами category для заданного user_id
+        Изменят категорию c параметрами из category для заданного user_id
         Возвращает измененную категорию в виде словаря
         """
         result = {}

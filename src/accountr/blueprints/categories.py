@@ -17,7 +17,7 @@ bp = Blueprint('categories', __name__)
 
 class CategoriesView(MethodView):
     """
-    Обработка запросов о работе с категориями (/categories)
+    Обработка запросов к категориям (/categories)
     get - получение информации о категориях пользователя
     post - создание категории
     """
