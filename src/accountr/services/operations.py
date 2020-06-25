@@ -17,7 +17,7 @@ class OperationsService(BaseService):
         result = {}
         with self.connection as con:
             cur = con.execute("""
-                SELECT id, user_id, type_id, category_id, (amount*1.0/100) AS amount, operation_date, created_date, description 
+                SELECT id, user_id, type_id, category_id, amount, operation_date, created_date, description 
                 FROM operations
                 WHERE id = ?
             """, (operation_id,)
@@ -38,7 +38,7 @@ class OperationsService(BaseService):
         amount = operation.get('amount')
         if not amount:
             amount = 0
-        amount_int = float(amount)*100
+
         operation_date = operation.get('operation_date')
         description = operation.get('description')
 
@@ -46,9 +46,9 @@ class OperationsService(BaseService):
             cursor = self.connection.cursor()
             cursor.execute("""
                 INSERT INTO operations (type_id, category_id, amount, operation_date, user_id, description, created_date) 
-                VALUES (?, ?, ?, ?, ?, ?, DATE('now'))
+                VALUES (?, ?, ?, ?, ?, ?, DATETIME('now'))
             """,
-                (type_id, category_id, amount_int, operation_date, user_id, description),
+                (type_id, category_id, amount, operation_date, user_id, description),
             )
             self.connection.commit()
             operation_id = cursor.lastrowid
@@ -67,9 +67,6 @@ class OperationsService(BaseService):
             params = ','.join(f'{key} = ?' for key in update)
             query = f'UPDATE operations SET {params} WHERE id = ? '
             amount = operation.get('amount')
-            if amount:
-                amount_int = float(amount) * 100
-                update['amount'] = amount_int
             self.connection.execute(query, (*update.values(), operation_id))
             self.connection.commit()
             result = self.get_operation(operation_id)
