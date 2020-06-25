@@ -28,7 +28,9 @@
 ---
 **?** - *необязательный парметр*
 
-**Формат времени:** `YYYY-MM-DD HH:MM:SS` [(ISO)](https://yandex.ru/support/partnermarket/export/date-format.html)
+**Формат времени:** *строка вида* `YYYY-MM-DD HH:MM:SS` [(ISO)](https://yandex.ru/support/partnermarket/export/date-format.html)
+
+*Все суммы, а именно параметры* **amount** *и* **total_amount**, *указываются и возвращаются в копейках*
 
 *Предполагается, что в запросе есть все обязательные параметры и их типы указаны корректно*
 
