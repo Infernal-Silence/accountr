@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "fa86d8ff-587f-451a-9e78-f3214e6051ac",
+		"name": "Получение отчётов",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Получение отчёта для пользователя user1 с категорией 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1f23d789-8337-4ad9-93be-90f58cd53067",
+						"exec": [
+							"pm.test(\"Successful GET request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        total_amount: 0,\r",
+							"        operations: [],\r",
+							"        total_pages: 0,\r",
+							"        total_items: 0 \r",
+							"    })\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?category_id=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					],
+					"query": [
+						{
+							"key": "category_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение отчёта для пользователя user1 с любой категорией",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "811dfc2c-ddf8-4ead-a40f-3f9b8291ab95",
+						"exec": [
+							"pm.test(\"Successful GET request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        total_amount: 34060,\r",
+							"        operations: [\r",
+							"            {\r",
+							"                amount: 34060,\r",
+							"                category_id: [],\r",
+							"                description: null,\r",
+							"                id: 3,\r",
+							"                operation_date: \"2020-06-21 20:20:20\",\r",
+							"                type_id: 1,\r",
+							"                user_id: 1\r",
+							"            }\r",
+							"        ],\r",
+							"        total_pages: 1,\r",
+							"        total_items: 1 \r",
+							"    })\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/report",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
