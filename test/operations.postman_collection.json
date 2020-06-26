@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "91210e71-e5fd-41e7-aaeb-ad42fd693f1d",
+		"_postman_id": "b306d5b3-5496-4494-9309-11436c7d20b7",
 		"name": "Operations",
 		"description": "red-studio\r\nОперации:\r\n- добавление\r\n- изменение\r\n- удаление\r\n- получение операции по ее id",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -12,7 +12,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "1a183332-e8cc-4850-9b0f-163a0f9d8e91",
+						"id": "24e123cc-58b2-41da-ab23-adaecc61c52b",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -58,18 +58,17 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "edee9394-83f5-4859-81e1-32281ef3bd81",
+						"id": "1ea7aa2b-484b-4357-b415-1c9e1bf51a16",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(pm.response.code).to.eql(201);\r",
 							"    pm.expect(jsonData).to.include({\r",
-							"        amount: 250.78,\r",
+							"        amount: 25078,\r",
 							"        category_id: 7,\r",
-							"        created_date: \"2020-06-22\",\r",
 							"        description: \"магаз\",\r",
 							"        id: 1,\r",
-							"        operation_date: \"2020-06-17\",\r",
+							"        operation_date: \"2020-06-17 20:20:20\",\r",
 							"        type_id: 1,\r",
 							"        user_id: 2\r",
 							"    })\r",
@@ -95,7 +94,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_id\": \"2\",\r\n    \"type_id\": \"1\",\r\n    \"category_id\": \"7\",\r\n    \"amount\": \"250.78\",\r\n    \"operation_date\": \"2020-06-17\",\r\n    \"description\": \"магаз\"    \r\n}",
+					"raw": "{\r\n    \"user_id\": \"2\",\r\n    \"type_id\": \"1\",\r\n    \"category_id\": \"7\",\r\n    \"amount\": \"25078\",\r\n    \"operation_date\": \"2020-06-17 20:20:20\",\r\n    \"description\": \"магаз\"    \r\n}",
 					"options": {
 						"raw": {}
 					}
@@ -124,7 +123,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f5d2b421-3ed1-47b8-9e3c-d9577a507eb2",
+						"id": "235a1fc7-553c-4e15-98c0-fd2bfaa3f1c3",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -132,10 +131,9 @@
 							"    pm.expect(jsonData).to.include({\r",
 							"        amount: 0.0,\r",
 							"        category_id: null,\r",
-							"        created_date: \"2020-06-22\",\r",
 							"        description: null,\r",
 							"        id: 2,\r",
-							"        operation_date: \"2020-06-20\",\r",
+							"        operation_date: \"2020-06-20 20:20:20\",\r",
 							"        type_id: 2,\r",
 							"        user_id: 2\r",
 							"    })\r",
@@ -161,7 +159,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_id\": \"2\",\r\n    \"type_id\": \"2\",\r\n    \"operation_date\": \"2020-06-20\"\r\n}",
+					"raw": "{\r\n    \"user_id\": \"2\",\r\n    \"type_id\": \"2\",\r\n    \"operation_date\": \"2020-06-20 20:20:20\"\r\n}",
 					"options": {
 						"raw": {}
 					}
@@ -190,7 +188,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "84143a05-3c26-45bb-85da-cab4b0b1e912",
+						"id": "baf61ade-0e76-4a7e-b7c0-adde20b7797f",
 						"exec": [
 							"pm.test(\"Status code is 401\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(400);\r",
@@ -216,7 +214,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_id\": \"1\",\r\n    \"type_id\": \"-1\",\r\n    \"category_id\": \"1\",\r\n    \"amount\": \"250.78\",\r\n    \"operation_date\": \"2020-06-16\",\r\n    \"description\": \"ресторан Азов\"    \r\n}",
+					"raw": "{\r\n    \"user_id\": \"1\",\r\n    \"type_id\": \"-1\",\r\n    \"category_id\": \"1\",\r\n    \"amount\": \"25078\",\r\n    \"operation_date\": \"2020-06-16 20:20:20\",\r\n    \"description\": \"ресторан Азов\"    \r\n}",
 					"options": {
 						"raw": {}
 					}
@@ -245,7 +243,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ccbdd50b-3b55-40d9-a180-c95a2dec252f",
+						"id": "1cbbe986-ac89-41ba-8b31-95a742389a3f",
 						"exec": [
 							"pm.test(\"Status code is 401\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(400);\r",
@@ -271,7 +269,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_id\": \"1\",\r\n    \"type_id\": \"1\",\r\n    \"category_id\": \"-1\",\r\n    \"amount\": \"250.78\",\r\n    \"operation_date\": \"2020-06-16\",\r\n    \"description\": \"ресторан Азов\"    \r\n}",
+					"raw": "{\r\n    \"user_id\": \"1\",\r\n    \"type_id\": \"1\",\r\n    \"category_id\": \"-1\",\r\n    \"amount\": \"25078\",\r\n    \"operation_date\": \"2020-06-16 20:20:20\",\r\n    \"description\": \"ресторан Азов\"    \r\n}",
 					"options": {
 						"raw": {}
 					}
@@ -300,7 +298,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "15e272a2-c61a-4a66-9b3e-f5dffd47e0f8",
+						"id": "ec42a1e6-f4e8-49eb-8e1c-e922de62a5a5",
 						"exec": [
 							"pm.test(\"Status code is 401\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(403);\r",
@@ -326,7 +324,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"type_id\": \"1\",\r\n    \"category_id\": \"1\",\r\n    \"amount\": \"250.78\",\r\n    \"operation_date\": \"2020-06-16\",\r\n    \"description\": \"ресторан Азов\"    \r\n}",
+					"raw": "{\r\n    \"type_id\": \"1\",\r\n    \"category_id\": \"1\",\r\n    \"amount\": \"25078\",\r\n    \"operation_date\": \"2020-06-16 20:20:20\",\r\n    \"description\": \"ресторан Азов\"    \r\n}",
 					"options": {
 						"raw": {}
 					}
@@ -355,7 +353,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d6b2b16b-10e6-4819-9fb4-c1a70931bed4",
+						"id": "8aab858e-043a-4b3a-a7c1-e8e9e4e51d52",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -401,7 +399,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "c93989ae-2c0e-4e9e-b24e-4eb2e5cfab2e",
+						"id": "580f4491-0e5c-4649-9e96-5c6e4a0b0324",
 						"exec": [
 							"pm.test(\"Status code is 401\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(401);\r",
@@ -427,7 +425,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_id\": \"1\",\r\n    \"type_id\": \"1\",\r\n    \"category_id\": \"-1\",\r\n    \"amount\": \"250.78\",\r\n    \"operation_date\": \"2020-06-16\",\r\n    \"description\": \"ресторан Азов\"    \r\n}",
+					"raw": "{\r\n    \"user_id\": \"1\",\r\n    \"type_id\": \"1\",\r\n    \"category_id\": \"-1\",\r\n    \"amount\": \"25078\",\r\n    \"operation_date\": \"2020-06-16 20:20:20\",\r\n    \"description\": \"ресторан Азов\"    \r\n}",
 					"options": {
 						"raw": {}
 					}
@@ -456,7 +454,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8a46b0fd-8cf0-44af-a32e-bc659f6a707a",
+						"id": "d678a020-5447-40f7-9bbb-423a43a54fc0",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -502,18 +500,17 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a697b708-683c-47d9-918b-939a5960b8c1",
+						"id": "6e2df9df-286b-4051-bc74-d370a139dacc",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(pm.response.code).to.eql(201);\r",
 							"    pm.expect(jsonData).to.include({\r",
-							"        amount: 340.60,\r",
+							"        amount: 34060,\r",
 							"        category_id: null,\r",
-							"        created_date: \"2020-06-22\",\r",
 							"        description: null,\r",
 							"        id: 3,\r",
-							"        operation_date: \"2020-06-21\",\r",
+							"        operation_date: \"2020-06-21 20:20:20\",\r",
 							"        type_id: 1,\r",
 							"        user_id: 1\r",
 							"    })\r",
@@ -539,7 +536,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_id\": \"1\",\r\n    \"type_id\": \"1\",\r\n    \"amount\": \"340.60\",\r\n    \"operation_date\": \"2020-06-21\"\r\n}",
+					"raw": "{\r\n    \"user_id\": \"1\",\r\n    \"type_id\": \"1\",\r\n    \"amount\": \"34060\",\r\n    \"operation_date\": \"2020-06-21 20:20:20\"\r\n}",
 					"options": {
 						"raw": {}
 					}
@@ -568,7 +565,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a4073b66-73f7-431a-b758-59a591e54731",
+						"id": "038f18d8-3c87-4815-b398-faa9efe4956a",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -614,7 +611,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b1cb6591-904e-4b86-8a19-b6910af94416",
+						"id": "5205faaf-32ae-486b-a669-8edd8b39e16a",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -660,18 +657,17 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "1ac5fdf5-a030-4fc9-bb79-a04b7b94208c",
+						"id": "1cbf9b94-cdfe-4b93-b654-7292f5e4a6ab",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
 							"    pm.expect(jsonData).to.include({\r",
-							"        amount: 250.78,\r",
+							"        amount: 25078,\r",
 							"        category_id: 7,\r",
-							"        created_date: \"2020-06-22\",\r",
 							"        description: \"магаз\",\r",
 							"        id: 1,\r",
-							"        operation_date: \"2020-06-17\",\r",
+							"        operation_date: \"2020-06-17 20:20:20\",\r",
 							"        type_id: 1,\r",
 							"        user_id: 2\r",
 							"    })\r",
@@ -698,7 +694,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_id\": \"int\",\r\n    \"type_id\": \"int\",\r\n    \"category_id\": \"int?\",\r\n    \"amount\": \"float?\",\r\n    \"operation_date\": \"datetime\",\r\n    \"description\": \"str?\"    \r\n}",
+					"raw": "",
 					"options": {
 						"raw": {}
 					}
@@ -728,7 +724,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e0dcab61-95bf-4973-acd7-a2172ed5d352",
+						"id": "91da0c59-7ac2-4342-b50a-6f52952032e2",
 						"exec": [
 							"pm.test(\"Status code is 401\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(403);\r",
@@ -785,7 +781,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "54e056be-ff1f-4696-8c4e-5f8e1988ca2b",
+						"id": "437612bc-40c4-428e-b8ca-8d294cac514f",
 						"exec": [
 							"pm.test(\"Status code is 401\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(404);\r",
@@ -812,7 +808,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_id\": \"int\",\r\n    \"type_id\": \"int\",\r\n    \"category_id\": \"int?\",\r\n    \"amount\": \"float?\",\r\n    \"operation_date\": \"datetime\",\r\n    \"description\": \"str?\"    \r\n}",
+					"raw": "",
 					"options": {
 						"raw": {}
 					}
@@ -842,7 +838,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d60574a5-947d-4573-ac49-8978964a21ca",
+						"id": "4e449668-4619-45a1-a622-4d165c2af421",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -888,7 +884,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "9fda4761-3143-438c-978a-6ac415c4dee4",
+						"id": "075e0920-2ece-42b8-bb80-1bf767b8bb9b",
 						"exec": [
 							"pm.test(\"Status code is 401\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(401);\r",
@@ -915,7 +911,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_id\": \"int\",\r\n    \"type_id\": \"int\",\r\n    \"category_id\": \"int?\",\r\n    \"amount\": \"float?\",\r\n    \"operation_date\": \"datetime\",\r\n    \"description\": \"str?\"    \r\n}",
+					"raw": "",
 					"options": {
 						"raw": {}
 					}
@@ -945,7 +941,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b875d1d4-76ba-4862-919f-0931d1822124",
+						"id": "18e28490-1627-4bb0-a5b2-98b3f63c243b",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -991,7 +987,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0ba20d5a-a349-4e3a-9a1b-9962cc365c82",
+						"id": "0eeaa6d3-c32d-4169-b776-a8cc8d8b3148",
 						"exec": [
 							"pm.test(\"Successful PATCH request\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -999,10 +995,9 @@
 							"    pm.expect(jsonData).to.include({\r",
 							"        amount: 666.0,\r",
 							"        category_id: 6,\r",
-							"        created_date: \"2020-06-22\",\r",
 							"        description: \"измененная операция\",\r",
 							"        id: 1,\r",
-							"        operation_date: \"2020-06-26\",\r",
+							"        operation_date: \"2020-06-26 20:20:20\",\r",
 							"        type_id: 2,\r",
 							"        user_id: 2\r",
 							"    })\r",
@@ -1028,7 +1023,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"type_id\": \"2\",\r\n    \"amount\": \"666\",\r\n    \"category_id\": \"6\",\r\n    \"operation_date\": \"2020-06-26\",\r\n    \"description\": \"измененная операция\"    \r\n}",
+					"raw": "{\r\n    \"type_id\": \"2\",\r\n    \"amount\": \"666\",\r\n    \"category_id\": \"6\",\r\n    \"operation_date\": \"2020-06-26 20:20:20\",\r\n    \"description\": \"измененная операция\"    \r\n}",
 					"options": {
 						"raw": {}
 					}
@@ -1058,7 +1053,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "99dba090-ec1b-4ced-afd6-862ad8a2c26a",
+						"id": "747e151a-eb10-408d-863f-0a3788238114",
 						"exec": [
 							"pm.test(\"Status code is 403\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(403);\r",
@@ -1084,7 +1079,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"type_id\": \"1\",\r\n    \"category_id\": \"1\",\r\n    \"amount\": \"888\",\r\n    \"operation_date\": \"2020-06-20\",\r\n    \"description\": \"измененная операция\"    \r\n}",
+					"raw": "{\r\n    \"type_id\": \"1\",\r\n    \"category_id\": \"1\",\r\n    \"amount\": \"888\",\r\n    \"operation_date\": \"2020-06-20 20:20:20\",\r\n    \"description\": \"измененная операция\"    \r\n}",
 					"options": {
 						"raw": {}
 					}
@@ -1114,7 +1109,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3f056d38-95f9-486e-abf6-46d48888f5c1",
+						"id": "fb3f74f5-d878-4937-b30c-2023325b454e",
 						"exec": [
 							"pm.test(\"Status code is 403\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(404);\r",
@@ -1140,7 +1135,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"type_id\": \"1\",\r\n    \"category_id\": \"1\",\r\n    \"amount\": \"666\",\r\n    \"operation_date\": \"2020-06-20\",\r\n    \"description\": \"измененная операция\"    \r\n}",
+					"raw": "{\r\n    \"type_id\": \"1\",\r\n    \"category_id\": \"1\",\r\n    \"amount\": \"666\",\r\n    \"operation_date\": \"2020-06-20 20:20:20\",\r\n    \"description\": \"измененная операция\"    \r\n}",
 					"options": {
 						"raw": {}
 					}
@@ -1170,10 +1165,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "630937b5-2450-4d33-b78b-32fd534ae5d9",
+						"id": "e00d8ae8-4d5c-4653-8668-2c6dbedc7155",
 						"exec": [
-							"pm.test(\"Status code is 403\", function () {\r",
-							"    pm.expect(pm.response.code).to.eql(404);\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(400);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1196,13 +1191,13 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"type_id\": \"1\",\r\n    \"category_id\": \"1\",\r\n    \"amount\": \"666\",\r\n    \"operation_date\": \"2020-06-20\",\r\n    \"description\": \"измененная операция\"    \r\n}",
+					"raw": "{\r\n    \"type_id\": \"-1\",\r\n    \"category_id\": \"1\",\r\n    \"amount\": \"666\",\r\n    \"operation_date\": \"2020-06-20 20:20:20\",\r\n    \"description\": \"измененная операция\"    \r\n}",
 					"options": {
 						"raw": {}
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/operations/-1",
+					"raw": "http://127.0.0.1:5000/operations/1",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -1213,7 +1208,7 @@
 					"port": "5000",
 					"path": [
 						"operations",
-						"-1"
+						"1"
 					]
 				},
 				"description": "URL: /operations/<id>\r\n\r\nМетод: PATCH\r\n\r\nЗапрос:\r\n\r\n{\r\n    type_id: int?,\r\n    category_id: int?,\r\n    amount: float?,\r\n    operation_date: date?,\r\n    description: str?  \r\n}\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    user_id: int,\r\n    type_id: int,\r\n    category_id: int,\r\n    amount: float,\r\n    operation_date: date,\r\n    created_date: date,\r\n    description: str\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - операция другого пользователя\r\n404 - такого id не существует"
@@ -1226,10 +1221,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b034cdc6-d837-4c56-b4ba-f9024608800f",
+						"id": "bb3d2a78-31aa-4001-91ea-afd01190230a",
 						"exec": [
-							"pm.test(\"Status code is 404\", function () {\r",
-							"    pm.expect(pm.response.code).to.eql(404);\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(400);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1252,13 +1247,13 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"type_id\": \"1\",\r\n    \"category_id\": \"1\",\r\n    \"amount\": \"666\",\r\n    \"operation_date\": \"2020-06-20\",\r\n    \"description\": \"измененная операция\"    \r\n}",
+					"raw": "{\r\n    \"type_id\": \"1\",\r\n    \"category_id\": \"-1\",\r\n    \"amount\": \"666\",\r\n    \"operation_date\": \"2020-06-20 20:20:20\",\r\n    \"description\": \"измененная операция\"    \r\n}",
 					"options": {
 						"raw": {}
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/operations/-1",
+					"raw": "http://127.0.0.1:5000/operations/1",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -1269,7 +1264,7 @@
 					"port": "5000",
 					"path": [
 						"operations",
-						"-1"
+						"1"
 					]
 				},
 				"description": "URL: /operations/<id>\r\n\r\nМетод: PATCH\r\n\r\nЗапрос:\r\n\r\n{\r\n    type_id: int?,\r\n    category_id: int?,\r\n    amount: float?,\r\n    operation_date: date?,\r\n    description: str?  \r\n}\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    user_id: int,\r\n    type_id: int,\r\n    category_id: int,\r\n    amount: float,\r\n    operation_date: date,\r\n    created_date: date,\r\n    description: str\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - операция другого пользователя\r\n404 - такого id не существует"
@@ -1282,7 +1277,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ed25f249-745c-412f-b974-2e7300c2ccea",
+						"id": "2025661e-8718-4cc7-979b-fa0f4400d305",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -1324,6 +1319,20 @@
 		},
 		{
 			"name": "Изменение операции не авторизованным пользователем",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "62765643-f0ea-4ace-9de5-8e0cf4a9905d",
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(401);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {
 					"content-type": true
@@ -1340,7 +1349,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"type_id\": \"1\",\r\n    \"category_id\": \"1\",\r\n    \"amount\": \"666\",\r\n    \"operation_date\": \"2020-06-20\",\r\n    \"description\": \"измененная операция\"    \r\n}",
+					"raw": "{\r\n    \"type_id\": \"1\",\r\n    \"category_id\": \"1\",\r\n    \"amount\": \"666\",\r\n    \"operation_date\": \"2020-06-20 20:20:20\",\r\n    \"description\": \"измененная операция\"    \r\n}",
 					"options": {
 						"raw": {}
 					}
@@ -1365,12 +1374,160 @@
 			"response": []
 		},
 		{
+			"name": "Login user1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4850a05d-a232-49cb-81ca-121edb7770d6",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"user1@gmail.com\",\n\t\"password\": \"user1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/auth/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Удаление операции другого пользователя",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "acf7d920-9347-457e-b6dc-946f3c0ed6e3",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(403);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/operations/2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"operations",
+						"2"
+					]
+				},
+				"description": "URL: /operations/<id>\r\n\r\nМетод: DELETE\r\n\r\nЗапрос: пусто\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    user_id: int,\r\n    type_id: int,\r\n    category_id: int,\r\n    amount: float,\r\n    operation_date: date,\r\n    created_date: date,\r\n    description: str\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n404 - такого id не существует"
+			},
+			"response": []
+		},
+		{
+			"name": "Logout user1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6b24c9f0-81a4-43e8-8d2e-22c7bd8ade1e",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"user2@gmail.com\",\n\t\"password\": \"user2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/auth/logout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Login user2",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "4eda46ba-6f01-4f63-a683-74993d76e107",
+						"id": "f97e4936-e9a8-43ff-bcfc-e7f6b0a35287",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -1416,10 +1573,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e4f3b2d5-06bf-4103-b760-996e4b506bdd",
+						"id": "5463612d-9b26-410a-8ecd-af761766af2a",
 						"exec": [
-							"pm.test(\"Status code is 404\", function () {\r",
-							"    pm.expect(pm.response.code).to.eql(204);\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1468,6 +1625,20 @@
 		},
 		{
 			"name": "Удаление не существующей операции",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "424c03df-fbc6-4cda-82d9-af729bc2a853",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {
 					"content-type": true
@@ -1514,7 +1685,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3fb0462c-6d5d-48a2-903d-36992f354246",
+						"id": "4484b468-4a7e-47af-b3aa-72dfd21f3ced",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -1556,6 +1727,20 @@
 		},
 		{
 			"name": "Удаление операции не авторизованным пользователем",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a88cfdef-4e38-4b36-881e-4b5e439c5842",
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(401);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {
 					"content-type": true
