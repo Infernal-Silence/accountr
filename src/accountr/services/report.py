@@ -139,7 +139,7 @@ class ReportService(BaseService):
         return query, params
 
     def _build_report(self, rows, categories, page_size):
-        total_amount = rows[0]['total_amount'] / 100
+        total_amount = rows[0]['total_amount']
         total_items = rows[0]['total_items']
         total_pages = math.ceil(total_items / page_size)
         operations = []
@@ -153,7 +153,7 @@ class ReportService(BaseService):
                 'operation_date': datetime.fromtimestamp(row['operation_date']).isoformat(),
                 'created_date': datetime.fromtimestamp(row['created_date']).isoformat(),
                 'type_name': row['type_name'],
-                'amount': row['amount'] / 100,
+                'amount': row['amount'],
                 'description': row['description'],
                 'categories': [
                     categories[category_id]
