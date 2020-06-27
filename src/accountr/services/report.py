@@ -1,7 +1,7 @@
 import math
 from datetime import datetime, timedelta
 
-from dateutil.relativedelta import relativedelta
+from dateutil.relativedelta import relativedelta, MO
 
 from .base import BaseService
 from .categories import CategoriesService
@@ -33,11 +33,11 @@ class ReportService(BaseService):
         if 'period' in qs:
             period = qs['period']
             today = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
-            if period == 'today':
-                filters['start_date'] = today
-            elif period == 'yesterday':
-                filters['start_date'] = today - timedelta(days=1)
-                filters['end_date'] = today
+            if period == 'week':
+                filters['start_date'] = today + relativedelta(weekday=MO(-1))
+            elif period == 'prev_week':
+                filters['start_date'] = today + relativedelta(weekday=MO(-2))
+                filters['end_date'] = today + relativedelta(weekday=MO(-1))
             elif period == 'month':
                 filters['start_date'] = today.replace(day=1)
             elif period == 'prev_month':
@@ -114,13 +114,13 @@ class ReportService(BaseService):
             params.append(user_id)
 
         if 'start_date' in filters:
-            start_date = filters['start_date'].timestamp()
-            where_clauses.append('o.operation_date >= ?')
+            start_date = filters['start_date']
+            where_clauses.append('strftime(\'%s\', o.operation_date) >= strftime(\'%s\', ?)')
             params.append(start_date)
 
         if 'end_date' in filters:
-            end_date = filters['end_date'].timestamp()
-            where_clauses.append('o.operation_date < ?')
+            end_date = filters['end_date']
+            where_clauses.append('strftime(\'%s\', o.operation_date) < strftime(\'%s\', ?)')
             params.append(end_date)
 
         if 'category_id' in filters:
