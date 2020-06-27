@@ -21,7 +21,7 @@ from http import HTTPStatus
 bp = Blueprint('operations', __name__)
 
 
-class CategoriesView(MethodView):
+class OperationsView(MethodView):
     """
     Обработка запросов о работе с операциями (/operations)
     post - создание операции
@@ -107,12 +107,12 @@ class OperationView(MethodView):
             service = OperationsService(con)
             operation = service.get_operation(operation_id)
             if not operation:
-                return '', HTTPStatus.BAD_REQUEST
+                return '', HTTPStatus.NOT_FOUND
             if user_id != operation['user_id']:
                 return '', HTTPStatus.FORBIDDEN
             service.delete_operation(operation_id)
-        return '', HTTPStatus.NO_CONTENT
+        return '', HTTPStatus.OK
 
 
-bp.add_url_rule('', view_func=CategoriesView.as_view('operations'))
+bp.add_url_rule('', view_func=OperationsView.as_view('operations'))
 bp.add_url_rule('/<int:operation_id>', view_func=OperationView.as_view('operation'))
