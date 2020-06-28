@@ -6,6 +6,336 @@
 	},
 	"item": [
 		{
+			"name": "Получение created_date для всех операций user2",
+			"item": [
+				{
+					"name": "Login user2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8c432ffe-9695-426e-a177-9d7d45139f81",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"user2@gmail.com\",\n\t\"password\": \"user2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/auth/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получение create_date для operation1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e61f7767-ae58-4d8a-8205-6d6e36abf3fd",
+								"exec": [
+									"pm.test(\"Successful GET request\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"    var jsonData = pm.response.json();\r",
+									"\r",
+									"    var cr_dates = pm.globals.get(\"CreateDates\");\r",
+									"    cr_dates = [0];\r",
+									"    cr_dates[jsonData.id] = jsonData.created_date;\r",
+									"    cr_dates[2] = 0;\r",
+									"    pm.globals.set(\"CreateDates\", cr_dates);\r",
+									"    console.log(pm.globals.get(\"CreateDates\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/operations/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"operations",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout user2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ee3c5907-3f2f-427c-9e43-ae81a9330ccd",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/auth/logout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Получение created_date для всех операций user1",
+			"item": [
+				{
+					"name": "Login user1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3cd3eee2-61fd-420d-a0ef-25baf8148b2a",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"user1@gmail.com\",\n\t\"password\": \"user1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/auth/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получение create_date для operation3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fa223df4-56d1-4d09-92a8-eef0f24c6206",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"    var jsonData = pm.response.json();\r",
+									"\r",
+									"    var cr_dates = pm.globals.get(\"CreateDates\");\r",
+									"    cr_dates[jsonData.id] = jsonData.created_date;\r",
+									"    pm.globals.set(\"CreateDates\", cr_dates);\r",
+									"    console.log(pm.globals.get(\"CreateDates\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/operations/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"operations",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout user1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cbf9097c-e16a-42f0-b179-4c174f8d445b",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/auth/logout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8fcce2e6-c2e6-4d80-9a7c-faf514dc1002",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "07e4f23b-9c6e-48a5-9c97-a0c8cafbd57b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "Login user2",
 			"event": [
 				{
@@ -61,39 +391,32 @@
 						"exec": [
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
+							"    var cr_dates = pm.globals.get(\"CreateDates\");\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
-							"    pm.expect(jsonData).to.include({\r",
-							"        id: 1, \r",
-							"        name: \"еда\", \r",
-							"        parent_id: null, \r",
-							"        user_id: 1 \r",
-							"    })\r",
+							"   \r",
+							"  pm.expect(jsonData).to.include({\r",
+							"        total_amount: -666,\r",
+							"        total_pages: 1,\r",
+							"        total_items: 1 \r",
+							"    });\r",
+							"    pm.expect(jsonData.operations.length).to.eql(1);\r",
+							"\r",
+							"    pm.expect(jsonData.operations[0]).to.include({\r",
+							"        amount: -666,\r",
+							"        description: \"измененная операция\",        \r",
+							"        id: 1,\r",
+							"        created_date: cr_dates[jsonData.operations[0].id],\r",
+							"        operation_date: \"2020-06-26 20:20:20\",\r",
+							"        type_name: \"expenditure\",\r",
+							"    });\r",
+							"    pm.expect(jsonData.operations[0].categories.length).to.eql(1);\r",
+							"    pm.expect(jsonData.operations[0].categories).to.have.deep.members([{\r",
+							"      id: 6,\r",
+							"      name: \"еда\",\r",
+							"      parent_id: null\r",
+							"    }]);\r",
 							"});\r",
-							"/* \r",
-							"{\r",
-							"  \"operations\": [\r",
-							"    {\r",
-							"      \"amount\": -666,\r",
-							"      \"categories\": [\r",
-							"        {\r",
-							"          \"id\": 6,\r",
-							"          \"name\": \"еда\",\r",
-							"          \"parent_id\": null,\r",
-							"          \"user_id\": 2\r",
-							"        }\r",
-							"      ],\r",
-							"      \"created_date\": \"2020-06-28 13:19:42\",\r",
-							"      \"description\": \"измененная операция\",\r",
-							"      \"id\": 1,\r",
-							"      \"operation_date\": \"2020-06-26 20:20:20\",\r",
-							"      \"type_name\": \"expenditure\"\r",
-							"    }\r",
-							"  ],\r",
-							"  \"total_amount\": -666,\r",
-							"  \"total_items\": 1,\r",
-							"  \"total_pages\": 1\r",
-							"}\r",
-							"*/"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -149,14 +472,32 @@
 						"exec": [
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
+							"    var cr_dates = pm.globals.get(\"CreateDates\");\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
-							"    pm.expect(jsonData).to.include({\r",
-							"        id: 1, \r",
-							"        name: \"еда\", \r",
-							"        parent_id: null, \r",
-							"        user_id: 1 \r",
-							"    })\r",
+							"   \r",
+							"  pm.expect(jsonData).to.include({\r",
+							"        total_amount: -666,\r",
+							"        total_pages: 1,\r",
+							"        total_items: 1 \r",
+							"    });\r",
+							"    pm.expect(jsonData.operations.length).to.eql(1);\r",
+							"\r",
+							"    pm.expect(jsonData.operations[0]).to.include({\r",
+							"        amount: -666,\r",
+							"        description: \"измененная операция\",        \r",
+							"        id: 1,\r",
+							"        created_date: cr_dates[jsonData.operations[0].id],\r",
+							"        operation_date: \"2020-06-26 20:20:20\",\r",
+							"        type_name: \"expenditure\",\r",
+							"    });\r",
+							"    pm.expect(jsonData.operations[0].categories.length).to.eql(1);\r",
+							"    pm.expect(jsonData.operations[0].categories).to.have.deep.members([{\r",
+							"      id: 6,\r",
+							"      name: \"еда\",\r",
+							"      parent_id: null\r",
+							"    }]);\r",
 							"});\r",
+							"\r",
 							"/*\r",
 							"{\r",
 							"  \"operations\": [\r",
@@ -245,12 +586,13 @@
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
 							"    pm.expect(jsonData).to.include({\r",
-							"        id: 1, \r",
-							"        name: \"еда\", \r",
-							"        parent_id: null, \r",
-							"        user_id: 1 \r",
-							"    })\r",
+							"        total_amount: 0,\r",
+							"        total_pages: 0,\r",
+							"        total_items: 0 \r",
+							"    });\r",
+							"    pm.expect(jsonData.operations.length).to.eql(0);\r",
 							"});\r",
 							"/*\r",
 							"{\r",
@@ -322,13 +664,30 @@
 						"exec": [
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
+							"    var cr_dates = pm.globals.get(\"CreateDates\");\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
-							"    pm.expect(jsonData).to.include({\r",
-							"        id: 1, \r",
-							"        name: \"еда\", \r",
-							"        parent_id: null, \r",
-							"        user_id: 1 \r",
-							"    })\r",
+							"   \r",
+							"  pm.expect(jsonData).to.include({\r",
+							"        total_amount: -666,\r",
+							"        total_pages: 1,\r",
+							"        total_items: 1 \r",
+							"    });\r",
+							"    pm.expect(jsonData.operations.length).to.eql(1);\r",
+							"\r",
+							"    pm.expect(jsonData.operations[0]).to.include({\r",
+							"        amount: -666,\r",
+							"        description: \"измененная операция\",        \r",
+							"        id: 1,\r",
+							"        created_date: cr_dates[jsonData.operations[0].id],\r",
+							"        operation_date: \"2020-06-26 20:20:20\",\r",
+							"        type_name: \"expenditure\",\r",
+							"    });\r",
+							"    pm.expect(jsonData.operations[0].categories.length).to.eql(1);\r",
+							"    pm.expect(jsonData.operations[0].categories).to.have.deep.members([{\r",
+							"      id: 6,\r",
+							"      name: \"еда\",\r",
+							"      parent_id: null\r",
+							"    }]);\r",
 							"});\r",
 							"/**\r",
 							" * {\r",
@@ -422,11 +781,11 @@
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
 							"    pm.expect(jsonData).to.include({\r",
-							"        id: 1, \r",
-							"        name: \"еда\", \r",
-							"        parent_id: null, \r",
-							"        user_id: 1 \r",
-							"    })\r",
+							"        total_amount: 0,\r",
+							"        total_pages: 0,\r",
+							"        total_items: 0 \r",
+							"    });\r",
+							"    pm.expect(jsonData.operations.length).to.eql(0);\r",
 							"});\r",
 							"/**\r",
 							" * {\r",
@@ -503,12 +862,18 @@
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(pm.response.code).to.eql(201);\r",
 							"    pm.expect(jsonData).to.include({\r",
-							"        amount: 1234567890,\r",
+							"        amount: 100,\r",
+							"        description: null,\r",
 							"        category_id: 7,\r",
-							"        operation_date: \"2020-07-01 10:00:00\",\r",
+							"        operation_date: \"2020-06-29 02:00:00\",\r",
 							"        type_id: 1,\r",
 							"        user_id: 2\r",
-							"    })\r",
+							"    });\r",
+							"\r",
+							"    var cr_dates = pm.globals.get(\"CreateDates\");\r",
+							"    cr_dates[jsonData.id] = jsonData.created_date;\r",
+							"    pm.globals.set(\"CreateDates\", cr_dates);\r",
+							"    console.log(pm.globals.get(\"CreateDates\"));\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -531,7 +896,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_id\": 2,\r\n    \"type_id\": 1,\r\n    \"category_id\": 7, \r\n    \"amount\": 100,\r\n    \"operation_date\": \"2020-07-01 10:00:00\"\r\n}",
+					"raw": "{\r\n    \"user_id\": 2,\r\n    \"type_id\": 1,\r\n    \"category_id\": 7, \r\n    \"amount\": 100,\r\n    \"operation_date\": \"2020-06-29 02:00:00\"\r\n}",
 					"options": {
 						"raw": {}
 					}
@@ -566,12 +931,18 @@
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(pm.response.code).to.eql(201);\r",
 							"    pm.expect(jsonData).to.include({\r",
-							"        amount: 1234567890,\r",
+							"        amount: 1000,\r",
+							"        description: null,\r",
 							"        category_id: 7,\r",
-							"        operation_date: \"2020-07-01 10:00:00\",\r",
+							"        operation_date: \"2020-06-07 10:00:00\",\r",
 							"        type_id: 1,\r",
 							"        user_id: 2\r",
-							"    })\r",
+							"    });\r",
+							"\r",
+							"    var cr_dates = pm.globals.get(\"CreateDates\");\r",
+							"    cr_dates[jsonData.id] = jsonData.created_date;\r",
+							"    pm.globals.set(\"CreateDates\", cr_dates);\r",
+							"    console.log(pm.globals.get(\"CreateDates\"));\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -629,12 +1000,18 @@
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(pm.response.code).to.eql(201);\r",
 							"    pm.expect(jsonData).to.include({\r",
-							"        amount: 1234567890,\r",
+							"        amount: 500,\r",
 							"        category_id: 7,\r",
+							"        description: null,\r",
 							"        operation_date: \"2020-06-28 10:00:00\",\r",
 							"        type_id: 1,\r",
 							"        user_id: 2\r",
-							"    })\r",
+							"    });\r",
+							"\r",
+							"    var cr_dates = pm.globals.get(\"CreateDates\");\r",
+							"    cr_dates[jsonData.id] = jsonData.created_date;\r",
+							"    pm.globals.set(\"CreateDates\", cr_dates);\r",
+							"    console.log(pm.globals.get(\"CreateDates\"));\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -692,12 +1069,18 @@
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(pm.response.code).to.eql(201);\r",
 							"    pm.expect(jsonData).to.include({\r",
-							"        amount: 1234567890,\r",
+							"        amount: 5555,\r",
 							"        category_id: 7,\r",
+							"        description: null,\r",
 							"        operation_date: \"2020-05-01 10:00:00\",\r",
 							"        type_id: 1,\r",
 							"        user_id: 2\r",
-							"    })\r",
+							"    });\r",
+							"\r",
+							"    var cr_dates = pm.globals.get(\"CreateDates\");\r",
+							"    cr_dates[jsonData.id] = jsonData.created_date;\r",
+							"    pm.globals.set(\"CreateDates\", cr_dates);\r",
+							"    console.log(pm.globals.get(\"CreateDates\"));\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -755,12 +1138,18 @@
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(pm.response.code).to.eql(201);\r",
 							"    pm.expect(jsonData).to.include({\r",
-							"        amount: 1234567890,\r",
+							"        amount: 9000,\r",
 							"        category_id: 7,\r",
+							"        description: null,\r",
 							"        operation_date: \"2020-02-29 10:00:00\",\r",
 							"        type_id: 1,\r",
 							"        user_id: 2\r",
-							"    })\r",
+							"    });\r",
+							"\r",
+							"    var cr_dates = pm.globals.get(\"CreateDates\");\r",
+							"    cr_dates[jsonData.id] = jsonData.created_date;\r",
+							"    pm.globals.set(\"CreateDates\", cr_dates);\r",
+							"    console.log(pm.globals.get(\"CreateDates\"));\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -818,11 +1207,11 @@
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
 							"    pm.expect(jsonData).to.include({\r",
-							"        id: 1, \r",
-							"        name: \"еда\", \r",
-							"        parent_id: null, \r",
-							"        user_id: 1 \r",
-							"    })\r",
+							"        total_amount: 0,\r",
+							"        total_pages: 0,\r",
+							"        total_items: 0 \r",
+							"    });\r",
+							"    pm.expect(jsonData.operations.length).to.eql(0);\r",
 							"});\r",
 							""
 						],
@@ -885,14 +1274,8 @@
 						"id": "9b3f761a-6075-4824-8f89-b9bfa2757d3d",
 						"exec": [
 							"pm.test(\"Successful GET category\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(pm.response.code).to.eql(200);\r",
-							"    pm.expect(jsonData).to.include({\r",
-							"        id: 1, \r",
-							"        name: \"еда\", \r",
-							"        parent_id: null, \r",
-							"        user_id: 1 \r",
-							"    })\r",
+							"    pm.expect(pm.response.code).to.eql(400);\r",
+							"   \r",
 							"});\r",
 							""
 						],
@@ -956,84 +1339,6 @@
 			"response": []
 		},
 		{
-			"name": "Получение операций user2 за  текущую неделю с пагинацией по 1",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "f9b2ade9-f4b8-4404-934d-eb281e9848a8",
-						"exec": [
-							"pm.test(\"Successful GET category\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(pm.response.code).to.eql(200);\r",
-							"    pm.expect(jsonData).to.include({\r",
-							"        id: 1, \r",
-							"        name: \"еда\", \r",
-							"        parent_id: null, \r",
-							"        user_id: 1 \r",
-							"    })\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true,
-				"disabledSystemHeaders": {
-					"content-type": true
-				}
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:5000/report?period=week&page_size=1&page=1",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "5000",
-					"path": [
-						"report"
-					],
-					"query": [
-						{
-							"key": "period",
-							"value": "week"
-						},
-						{
-							"key": "page_size",
-							"value": "1"
-						},
-						{
-							"key": "page",
-							"value": "1"
-						}
-					]
-				},
-				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
-			},
-			"response": []
-		},
-		{
 			"name": "Получение операций user2 за  предыдущую неделю",
 			"event": [
 				{
@@ -1043,15 +1348,53 @@
 						"exec": [
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
+							"    var cr_dates = pm.globals.get(\"CreateDates\");\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
-							"    pm.expect(jsonData).to.include({\r",
-							"        id: 1, \r",
-							"        name: \"еда\", \r",
-							"        parent_id: null, \r",
-							"        user_id: 1 \r",
-							"    })\r",
-							"});\r",
-							""
+							"   \r",
+							"  pm.expect(jsonData).to.include({\r",
+							"        total_amount: -166,\r",
+							"        total_pages: 1,\r",
+							"        total_items: 2 \r",
+							"    });\r",
+							"    pm.expect(jsonData.operations.length).to.eql(2);\r",
+							"\r",
+							"    pm.expect(jsonData.operations[0]).to.include({\r",
+							"        amount: -666,\r",
+							"        description: \"измененная операция\",        \r",
+							"        id: 1,\r",
+							"        created_date: cr_dates[jsonData.operations[0].id],\r",
+							"        operation_date: \"2020-06-26 20:20:20\",\r",
+							"        type_name: \"expenditure\",\r",
+							"    });\r",
+							"    pm.expect(jsonData.operations[0].categories.length).to.eql(1);\r",
+							"    pm.expect(jsonData.operations[0].categories).to.have.deep.members([{\r",
+							"      id: 6,\r",
+							"      name: \"еда\",\r",
+							"      parent_id: null\r",
+							"    }]);\r",
+							"\r",
+							"    pm.expect(jsonData.operations[1]).to.include({\r",
+							"        amount: 500,\r",
+							"        description: null,        \r",
+							"        id: 6,\r",
+							"        created_date: cr_dates[jsonData.operations[1].id],\r",
+							"        operation_date: \"2020-06-28 10:00:00\",\r",
+							"        type_name: \"income\",\r",
+							"    });\r",
+							"    pm.expect(jsonData.operations[1].categories.length).to.eql(2);\r",
+							"    pm.expect(jsonData.operations[1].categories).to.have.deep.members([\r",
+							"        {\r",
+							"        id: 6,\r",
+							"        name: \"еда\",\r",
+							"        parent_id: null\r",
+							"        },\r",
+							"        {\r",
+							"        id: 7,\r",
+							"        name: \"пивко\",\r",
+							"        parent_id: 6\r",
+							"        }\r",
+							"        ]);\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -1104,6 +1447,79 @@
 			"response": []
 		},
 		{
+			"name": "Получение операций user2 за  предыдущую неделю с пагинацией по 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9b2ade9-f4b8-4404-934d-eb281e9848a8",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?period=prev_week&page_size=1&page=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					],
+					"query": [
+						{
+							"key": "period",
+							"value": "prev_week"
+						},
+						{
+							"key": "page_size",
+							"value": "1"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
 			"name": "Получение операций user2 за текущий месяц",
 			"event": [
 				{
@@ -1114,12 +1530,7 @@
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
-							"    pm.expect(jsonData).to.include({\r",
-							"        id: 1, \r",
-							"        name: \"еда\", \r",
-							"        parent_id: null, \r",
-							"        user_id: 1 \r",
-							"    })\r",
+							"    \r",
 							"});\r",
 							""
 						],
@@ -1184,12 +1595,7 @@
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
-							"    pm.expect(jsonData).to.include({\r",
-							"        id: 1, \r",
-							"        name: \"еда\", \r",
-							"        parent_id: null, \r",
-							"        user_id: 1 \r",
-							"    })\r",
+							"    \r",
 							"});\r",
 							""
 						],
@@ -1254,12 +1660,7 @@
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
-							"    pm.expect(jsonData).to.include({\r",
-							"        id: 1, \r",
-							"        name: \"еда\", \r",
-							"        parent_id: null, \r",
-							"        user_id: 1 \r",
-							"    })\r",
+							"    \r",
 							"});\r",
 							""
 						],
@@ -1324,12 +1725,7 @@
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
-							"    pm.expect(jsonData).to.include({\r",
-							"        id: 1, \r",
-							"        name: \"еда\", \r",
-							"        parent_id: null, \r",
-							"        user_id: 1 \r",
-							"    })\r",
+							"    \r",
 							"});\r",
 							""
 						],
@@ -1394,12 +1790,7 @@
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
-							"    pm.expect(jsonData).to.include({\r",
-							"        id: 1, \r",
-							"        name: \"еда\", \r",
-							"        parent_id: null, \r",
-							"        user_id: 1 \r",
-							"    })\r",
+							"    \r",
 							"});\r",
 							""
 						],
@@ -1463,13 +1854,13 @@
 						"exec": [
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(pm.response.code).to.eql(200);\r",
 							"    pm.expect(jsonData).to.include({\r",
-							"        id: 1, \r",
-							"        name: \"еда\", \r",
-							"        parent_id: null, \r",
-							"        user_id: 1 \r",
-							"    })\r",
+							"        total_amount: 0,\r",
+							"        total_pages: 0,\r",
+							"        total_items: 0 \r",
+							"    });\r",
+							"    pm.expect(jsonData.operations.length).to.eql(0);\r",
+							"    \r",
 							"});\r",
 							""
 						],
@@ -1534,12 +1925,7 @@
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
-							"    pm.expect(jsonData).to.include({\r",
-							"        id: 1, \r",
-							"        name: \"еда\", \r",
-							"        parent_id: null, \r",
-							"        user_id: 1 \r",
-							"    })\r",
+							"    \r",
 							"});\r",
 							"/* \r",
 							"{\r",
@@ -1614,6 +2000,99 @@
 						{
 							"key": "page",
 							"value": "2"
+						}
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение всех операций user2 без фильтров с запросом страницы большей, чем операций",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7c444b45-e489-4bfa-8d61-2acdcdcd60ea",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"   \r",
+							"});\r",
+							"/* \r",
+							"{\r",
+							"  \"operations\": [\r",
+							"    {\r",
+							"      \"amount\": -666,\r",
+							"      \"categories\": [\r",
+							"        {\r",
+							"          \"id\": 6,\r",
+							"          \"name\": \"еда\",\r",
+							"          \"parent_id\": null,\r",
+							"          \"user_id\": 2\r",
+							"        }\r",
+							"      ],\r",
+							"      \"created_date\": \"2020-06-28 13:19:42\",\r",
+							"      \"description\": \"измененная операция\",\r",
+							"      \"id\": 1,\r",
+							"      \"operation_date\": \"2020-06-26 20:20:20\",\r",
+							"      \"type_name\": \"expenditure\"\r",
+							"    }\r",
+							"  ],\r",
+							"  \"total_amount\": -666,\r",
+							"  \"total_items\": 1,\r",
+							"  \"total_pages\": 1\r",
+							"}\r",
+							"*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?page_size=1&page=7",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					],
+					"query": [
+						{
+							"key": "page_size",
+							"value": "1"
+						},
+						{
+							"key": "page",
+							"value": "7"
 						}
 					]
 				},
@@ -1725,7 +2204,7 @@
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(pm.response.code).to.eql(201);\r",
 							"    pm.expect(jsonData).to.include({\r",
-							"        amount: 1234567890,\r",
+							"        amount: 2200,\r",
 							"        category_id: null,\r",
 							"        description: null,\r",
 							"        operation_date: \"2019-05-09 10:00:00\",\r",
@@ -1754,7 +2233,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_id\": \"1\",\r\n    \"type_id\": \"2\",\r\n    \"amount\": \"1234567890\",\r\n    \"operation_date\": \"2019-05-09 10:00:00\"\r\n}",
+					"raw": "{\r\n    \"user_id\": \"1\",\r\n    \"type_id\": \"2\",\r\n    \"amount\": 2200,\r\n    \"operation_date\": \"2019-05-09 10:00:00\"\r\n}",
 					"options": {
 						"raw": {}
 					}
@@ -1788,12 +2267,7 @@
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
-							"    pm.expect(jsonData).to.include({\r",
-							"        id: 1, \r",
-							"        name: \"еда\", \r",
-							"        parent_id: null, \r",
-							"        user_id: 1 \r",
-							"    })\r",
+							"    \r",
 							"});\r",
 							""
 						],
@@ -1849,15 +2323,10 @@
 					"script": {
 						"id": "188af9ae-0356-4964-ba0c-743f57af5680",
 						"exec": [
-							"pm.test(\"Successful GET category\", function () {\r",
+							"pm.test(\"Successful GET report\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
-							"    pm.expect(jsonData).to.include({\r",
-							"        id: 1, \r",
-							"        name: \"еда\", \r",
-							"        parent_id: null, \r",
-							"        user_id: 1 \r",
-							"    })\r",
+							"    \r",
 							"});\r",
 							""
 						],
@@ -1965,15 +2434,8 @@
 					"script": {
 						"id": "c63763c5-a553-4947-afa6-d85d2b90b787",
 						"exec": [
-							"pm.test(\"Successful GET category\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(pm.response.code).to.eql(200);\r",
-							"    pm.expect(jsonData).to.include({\r",
-							"        id: 1, \r",
-							"        name: \"еда\", \r",
-							"        parent_id: null, \r",
-							"        user_id: 1 \r",
-							"    })\r",
+							"pm.test(\"Successful GET report\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(401);\r",
 							"});\r",
 							""
 						],
@@ -1998,7 +2460,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_id\": \"int\",\r\n    \"type_id\": \"int\",\r\n    \"category_id\": \"int?\",\r\n    \"amount\": \"float?\",\r\n    \"operation_date\": \"datetime\",\r\n    \"description\": \"str?\"    \r\n}",
+					"raw": "",
 					"options": {
 						"raw": {}
 					}

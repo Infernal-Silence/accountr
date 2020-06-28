@@ -18,7 +18,11 @@ class ReportService(BaseService):
 
         categories_service = CategoriesService(self.connection)
         categories = {
-            category['id']: category
+            category['id']: dict(
+                id =  category['id'],
+                name = category['name'],
+                parent_id = category['parent_id']
+            )
             for category in categories_service.get_categories(user_id)
         }
         return self._build_report(rows, categories, page_size)
@@ -145,7 +149,6 @@ class ReportService(BaseService):
         return query, params
 
     def _build_report(self, rows, categories, page_size):
-        print([dict(row) for row in rows])
         operations = []
         for row in rows:
             if not row['category_path']:
