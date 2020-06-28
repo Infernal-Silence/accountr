@@ -19,6 +19,8 @@ bp = Blueprint('report', __name__)
 @auth_required
 def get_report(user):
     user_id = user['id']
+    if request.args.get('period') and (request.args.get('start_date') or request.args.get('end_date')):
+        return '', HTTPStatus.BAD_REQUEST
     with db.connection as connection:
         service = ReportService(connection)
         report = service.get_report(user_id, request.args)

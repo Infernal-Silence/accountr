@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2e3e68e2-672e-41bd-b1b2-61d451319f3a",
+		"_postman_id": "908e92f0-c8d5-4786-87c7-91575ff91443",
 		"name": "Report",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "110e1657-7430-47fc-85b2-d57f33a41b73",
+						"id": "2b9b9ecd-84d7-47e6-90f2-21655d59737f",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -57,7 +57,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0b6df67f-3326-40b6-a206-bae54f545444",
+						"id": "fcc00aab-2425-472a-b5c6-e2045261ffbc",
 						"exec": [
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -69,7 +69,31 @@
 							"        user_id: 1 \r",
 							"    })\r",
 							"});\r",
-							""
+							"/* \r",
+							"{\r",
+							"  \"operations\": [\r",
+							"    {\r",
+							"      \"amount\": -666,\r",
+							"      \"categories\": [\r",
+							"        {\r",
+							"          \"id\": 6,\r",
+							"          \"name\": \"еда\",\r",
+							"          \"parent_id\": null,\r",
+							"          \"user_id\": 2\r",
+							"        }\r",
+							"      ],\r",
+							"      \"created_date\": \"2020-06-28 13:19:42\",\r",
+							"      \"description\": \"измененная операция\",\r",
+							"      \"id\": 1,\r",
+							"      \"operation_date\": \"2020-06-26 20:20:20\",\r",
+							"      \"type_name\": \"expenditure\"\r",
+							"    }\r",
+							"  ],\r",
+							"  \"total_amount\": -666,\r",
+							"  \"total_items\": 1,\r",
+							"  \"total_pages\": 1\r",
+							"}\r",
+							"*/"
 						],
 						"type": "text/javascript"
 					}
@@ -92,7 +116,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_id\": \"int\",\r\n    \"type_id\": \"int\",\r\n    \"category_id\": \"int?\",\r\n    \"amount\": \"float?\",\r\n    \"operation_date\": \"datetime\",\r\n    \"description\": \"str?\"    \r\n}",
+					"raw": "",
 					"options": {
 						"raw": {}
 					}
@@ -121,7 +145,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "03973b35-437d-41db-b10f-aeafd6ba3bbc",
+						"id": "b37f3db4-df44-4cfe-bc1d-0567f9dca706",
 						"exec": [
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -133,7 +157,31 @@
 							"        user_id: 1 \r",
 							"    })\r",
 							"});\r",
-							""
+							"/*\r",
+							"{\r",
+							"  \"operations\": [\r",
+							"    {\r",
+							"      \"amount\": -666,\r",
+							"      \"categories\": [\r",
+							"        {\r",
+							"          \"id\": 6,\r",
+							"          \"name\": \"еда\",\r",
+							"          \"parent_id\": null,\r",
+							"          \"user_id\": 2\r",
+							"        }\r",
+							"      ],\r",
+							"      \"created_date\": \"2020-06-28 13:19:42\",\r",
+							"      \"description\": \"измененная операция\",\r",
+							"      \"id\": 1,\r",
+							"      \"operation_date\": \"2020-06-26 20:20:20\",\r",
+							"      \"type_name\": \"expenditure\"\r",
+							"    }\r",
+							"  ],\r",
+							"  \"total_amount\": -666,\r",
+							"  \"total_items\": 1,\r",
+							"  \"total_pages\": 1\r",
+							"}\r",
+							" */"
 						],
 						"type": "text/javascript"
 					}
@@ -187,12 +235,12 @@
 			"response": []
 		},
 		{
-			"name": "Получение операций user2 по заданным датам",
+			"name": "Получение операций user2 по категории id=5 (получение пустого отчёта)",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "ee8025b4-66ea-47c0-ae12-3a2e6c7a004b",
+						"id": "fac5add2-4cf3-476a-ac09-a5872ae5b129",
 						"exec": [
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -204,7 +252,109 @@
 							"        user_id: 1 \r",
 							"    })\r",
 							"});\r",
-							""
+							"/*\r",
+							"{\r",
+							"  \"operations\": [],\r",
+							"  \"total_amount\": 0,\r",
+							"  \"total_items\": 0,\r",
+							"  \"total_pages\": 0\r",
+							"}\r",
+							" */"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?category_id=5",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					],
+					"query": [
+						{
+							"key": "category_id",
+							"value": "5",
+							"description": "категория пивко"
+						}
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение операций user2 по заданным датам",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "428ef521-91be-4725-b530-94b2e6887fa0",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        id: 1, \r",
+							"        name: \"еда\", \r",
+							"        parent_id: null, \r",
+							"        user_id: 1 \r",
+							"    })\r",
+							"});\r",
+							"/**\r",
+							" * {\r",
+							"  \"operations\": [\r",
+							"    {\r",
+							"      \"amount\": -666,\r",
+							"      \"categories\": [\r",
+							"        {\r",
+							"          \"id\": 6,\r",
+							"          \"name\": \"еда\",\r",
+							"          \"parent_id\": null,\r",
+							"          \"user_id\": 2\r",
+							"        }\r",
+							"      ],\r",
+							"      \"created_date\": \"2020-06-28 13:19:42\",\r",
+							"      \"description\": \"измененная операция\",\r",
+							"      \"id\": 1,\r",
+							"      \"operation_date\": \"2020-06-26 20:20:20\",\r",
+							"      \"type_name\": \"expenditure\"\r",
+							"    }\r",
+							"  ],\r",
+							"  \"total_amount\": -666,\r",
+							"  \"total_items\": 1,\r",
+							"  \"total_pages\": 1\r",
+							"}\r",
+							" */"
 						],
 						"type": "text/javascript"
 					}
@@ -261,12 +411,93 @@
 			"response": []
 		},
 		{
+			"name": "Получение операций user2 по заданным датам так, чтобы не было ни одной операции",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "61064290-df35-4ebc-8021-ad19c0173edb",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        id: 1, \r",
+							"        name: \"еда\", \r",
+							"        parent_id: null, \r",
+							"        user_id: 1 \r",
+							"    })\r",
+							"});\r",
+							"/**\r",
+							" * {\r",
+							"  \"operations\": [],\r",
+							"  \"total_amount\": 0,\r",
+							"  \"total_items\": 0,\r",
+							"  \"total_pages\": 0\r",
+							"}\r",
+							" */"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?start_date=2020-06-26 00:00:00&end_date=2020-06-26 19:59:59",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					],
+					"query": [
+						{
+							"key": "start_date",
+							"value": "2020-06-26 00:00:00"
+						},
+						{
+							"key": "end_date",
+							"value": "2020-06-26 19:59:59"
+						}
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
 			"name": "Создание операции для user2 за текущую неделю",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "11723cf1-8b67-4e1a-a392-bc0120431d0f",
+						"id": "0c1350d8-1f1c-44ef-b8d4-f3fead7de964",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -300,7 +531,70 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_id\": 2,\r\n    \"type_id\": 1,\r\n    \"category_id\": 7, \r\n    \"amount\": 1234567890,\r\n    \"operation_date\": \"2020-07-01 10:00:00\"\r\n}",
+					"raw": "{\r\n    \"user_id\": 2,\r\n    \"type_id\": 1,\r\n    \"category_id\": 7, \r\n    \"amount\": 100,\r\n    \"operation_date\": \"2020-07-01 10:00:00\"\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/operations",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"operations"
+					]
+				},
+				"description": "URL: /operations/\r\n\r\nМетод: POST\r\n\r\nЗапрос:\r\n\r\n{\r\n    user_id: int,\r\n    type_id: int,\r\n    category_id: int?,\r\n    amount: float?,\r\n    operation_date: datetime,\r\n    description: str?    \r\n}\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    user_id: int,\r\n    type_id: int,\r\n    category_id: int,\r\n    amount: float,\r\n    operation_date: date,\r\n    created_date: date,\r\n    description: str\r\n}\r\n\r\nКоды:\r\n201 - ОК\r\n401 - пользователь не авторизован\r\n404 - задан не существующий тип или категория"
+			},
+			"response": []
+		},
+		{
+			"name": "Создание операции для user2 за текущий месяц",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6deef2b9-34b7-476f-8203-d042aa83eea1",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(201);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        amount: 1234567890,\r",
+							"        category_id: 7,\r",
+							"        operation_date: \"2020-07-01 10:00:00\",\r",
+							"        type_id: 1,\r",
+							"        user_id: 2\r",
+							"    })\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\": 2,\r\n    \"type_id\": 1,\r\n    \"category_id\": 7, \r\n    \"amount\": 1000,\r\n    \"operation_date\": \"2020-06-07 10:00:00\"\r\n}",
 					"options": {
 						"raw": {}
 					}
@@ -329,7 +623,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "4fce9d8a-1887-479f-ab57-f1225d93e499",
+						"id": "dbed6721-974c-46fd-b003-5fee4144eda5",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -363,7 +657,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_id\": 2,\r\n    \"type_id\": 1,\r\n    \"category_id\": 7, \r\n    \"amount\": 1234567890,\r\n    \"operation_date\": \"2020-06-28 10:00:00\"\r\n}",
+					"raw": "{\r\n    \"user_id\": 2,\r\n    \"type_id\": 1,\r\n    \"category_id\": 7, \r\n    \"amount\": 500,\r\n    \"operation_date\": \"2020-06-28 10:00:00\"\r\n}",
 					"options": {
 						"raw": {}
 					}
@@ -387,12 +681,12 @@
 			"response": []
 		},
 		{
-			"name": "Создание операции для user2 за  текущий квартал",
+			"name": "Создание операции для user2 за  текущий квартал (предыдущий месяц)",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "923904f7-bb9b-438f-8f92-b20e7676539d",
+						"id": "42d1a79a-40a1-4011-ab25-cbebaf0e8d8b",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -426,7 +720,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_id\": 2,\r\n    \"type_id\": 1,\r\n    \"category_id\": 7, \r\n    \"amount\": 1234567890,\r\n    \"operation_date\": \"2020-05-01 10:00:00\"\r\n}",
+					"raw": "{\r\n    \"user_id\": 2,\r\n    \"type_id\": 1,\r\n    \"category_id\": 7, \r\n    \"amount\": 5555,\r\n    \"operation_date\": \"2020-05-01 10:00:00\"\r\n}",
 					"options": {
 						"raw": {}
 					}
@@ -455,7 +749,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "bb28cbc7-2196-4e7f-b5ba-30ad34c9e218",
+						"id": "d4047821-e7d5-42cf-a3f7-91ee487a3897",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -489,7 +783,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_id\": 2,\r\n    \"type_id\": 1,\r\n    \"category_id\": 7, \r\n    \"amount\": 1234567890,\r\n    \"operation_date\": \"2020-02-29 10:00:00\"\r\n}",
+					"raw": "{\r\n    \"user_id\": 2,\r\n    \"type_id\": 1,\r\n    \"category_id\": 7, \r\n    \"amount\": 9000,\r\n    \"operation_date\": \"2020-02-29 10:00:00\"\r\n}",
 					"options": {
 						"raw": {}
 					}
@@ -518,7 +812,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "c2acbcbc-698f-4d4f-83a3-1cf17b0caf13",
+						"id": "df65a2dd-15b8-421e-acf0-605f0c4c0f04",
 						"exec": [
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -583,12 +877,169 @@
 			"response": []
 		},
 		{
+			"name": "Получение операций user2, если указать одновременно period, end_date, start_date",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9b3f761a-6075-4824-8f89-b9bfa2757d3d",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        id: 1, \r",
+							"        name: \"еда\", \r",
+							"        parent_id: null, \r",
+							"        user_id: 1 \r",
+							"    })\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?period=week&start_date=2020-06-27 00:00:00",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					],
+					"query": [
+						{
+							"key": "period",
+							"value": "week"
+						},
+						{
+							"key": "start_date",
+							"value": "2020-06-27 00:00:00"
+						},
+						{
+							"key": "end_date",
+							"value": "2020-06-26 23:59:59",
+							"disabled": true
+						}
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение операций user2 за  текущую неделю с пагинацией по 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9b2ade9-f4b8-4404-934d-eb281e9848a8",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        id: 1, \r",
+							"        name: \"еда\", \r",
+							"        parent_id: null, \r",
+							"        user_id: 1 \r",
+							"    })\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?period=week&page_size=1&page=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					],
+					"query": [
+						{
+							"key": "period",
+							"value": "week"
+						},
+						{
+							"key": "page_size",
+							"value": "1"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
 			"name": "Получение операций user2 за  предыдущую неделю",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "8e01103b-99ad-42bb-ae12-471715128933",
+						"id": "b1c5c122-e66a-429c-82bc-36e79b091422",
 						"exec": [
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -658,7 +1109,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "4329308c-cc4d-49e9-beb8-fbc8d348f799",
+						"id": "5500745c-bbe8-4e78-a07e-b81e1a41eb72",
 						"exec": [
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -728,7 +1179,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "94cdfe32-74e7-4e32-abf4-b9b64d9b4aa2",
+						"id": "fc6c96ff-15e7-4825-9d83-98f2067baed1",
 						"exec": [
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -798,7 +1249,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "513caa87-e727-494d-880e-bf2f17887726",
+						"id": "35dba5cd-5ef0-4d21-917f-2fc0bc555e5f",
 						"exec": [
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -868,7 +1319,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3c1a14fa-d236-4a57-8237-31f6f9292f17",
+						"id": "cf121099-c0e0-43e7-9997-4348b5f3f130",
 						"exec": [
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -938,7 +1389,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a7ff735a-2b01-4bbe-b848-5b56eb8a7e1d",
+						"id": "c404b98d-2817-4243-bb24-dbd5887d06fb",
 						"exec": [
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -1008,7 +1459,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0c311e03-040a-4c5c-8d04-5bb805d457a8",
+						"id": "0d3f7924-b352-4ac0-8b6e-4781c5582068",
 						"exec": [
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -1073,12 +1524,110 @@
 			"response": []
 		},
 		{
+			"name": "Получение всех операций user2 без фильтров с пагинацией по 2 и page = 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3706b8f2-8a8d-4124-bde3-b440709f97db",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        id: 1, \r",
+							"        name: \"еда\", \r",
+							"        parent_id: null, \r",
+							"        user_id: 1 \r",
+							"    })\r",
+							"});\r",
+							"/* \r",
+							"{\r",
+							"  \"operations\": [\r",
+							"    {\r",
+							"      \"amount\": -666,\r",
+							"      \"categories\": [\r",
+							"        {\r",
+							"          \"id\": 6,\r",
+							"          \"name\": \"еда\",\r",
+							"          \"parent_id\": null,\r",
+							"          \"user_id\": 2\r",
+							"        }\r",
+							"      ],\r",
+							"      \"created_date\": \"2020-06-28 13:19:42\",\r",
+							"      \"description\": \"измененная операция\",\r",
+							"      \"id\": 1,\r",
+							"      \"operation_date\": \"2020-06-26 20:20:20\",\r",
+							"      \"type_name\": \"expenditure\"\r",
+							"    }\r",
+							"  ],\r",
+							"  \"total_amount\": -666,\r",
+							"  \"total_items\": 1,\r",
+							"  \"total_pages\": 1\r",
+							"}\r",
+							"*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?page_size=2&page=2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					],
+					"query": [
+						{
+							"key": "page_size",
+							"value": "2"
+						},
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
 			"name": "Logout user2",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "f183b0d6-8e34-4c5c-9d10-9ac9bd8ce842",
+						"id": "7f056618-e16c-4cd2-9da5-76fce4166dbf",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -1124,7 +1673,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "6d2f097b-7828-4a5d-a41f-3774cc107eeb",
+						"id": "45b993dd-973c-4c18-9606-3d0b3ca9b647",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -1170,7 +1719,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "cfb929cd-b199-4404-8499-dd5d919efe11",
+						"id": "77c6aab2-fb62-4d45-81b0-fbfda07a0930",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -1234,7 +1783,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b638db1c-8607-4a55-865a-2a5d1788e0d9",
+						"id": "3afd6b67-4709-4de4-abe8-3238da80ed53",
 						"exec": [
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -1298,7 +1847,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "7f3c2f28-877e-49b9-ad6e-583b618559b0",
+						"id": "188af9ae-0356-4964-ba0c-743f57af5680",
 						"exec": [
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -1368,7 +1917,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b9b81ca5-cfea-4b74-8039-65a9c4779ea4",
+						"id": "834e570b-eec0-40e7-9ee4-2b1fbc286bae",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -1414,7 +1963,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "28ebe72e-4473-41bd-8b23-677c588c3874",
+						"id": "c63763c5-a553-4947-afa6-d85d2b90b787",
 						"exec": [
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -1477,7 +2026,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "a6b4e635-72a2-4ab4-9cd2-4658d4891c51",
+				"id": "2f7dc7e3-08e0-48ae-9207-d06b6f0becfb",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -1487,7 +2036,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "09c7712d-c6aa-42db-9f42-66cc2909e671",
+				"id": "c481e960-7da3-4f68-a806-1ef3424faa25",
 				"type": "text/javascript",
 				"exec": [
 					""

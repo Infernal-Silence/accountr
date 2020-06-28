@@ -9,12 +9,13 @@ from .categories import CategoriesService
 
 class ReportService(BaseService):
     def get_report(self, user_id, qs):
-        page = qs.get('page', 1)
-        page_size = qs.get('page_size', 20)
+        page = int(qs.get('page', 1))
+        page_size = int(qs.get('page_size', 20))
         filters = self._prepare_filters(user_id, qs)
         query, params = self._build_report_query(filters, page, page_size)
         cur = self.connection.execute(query, params)
         rows = cur.fetchall()
+
         categories_service = CategoriesService(self.connection)
         categories = {
             category['id']: category
@@ -35,17 +36,20 @@ class ReportService(BaseService):
             today = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
             if period == 'week':
                 filters['start_date'] = today + relativedelta(weekday=MO(-1))
+                filters['end_date'] = today + relativedelta(weekday=MO(0))
             elif period == 'prev_week':
                 filters['start_date'] = today + relativedelta(weekday=MO(-2))
                 filters['end_date'] = today + relativedelta(weekday=MO(-1))
             elif period == 'month':
                 filters['start_date'] = today.replace(day=1)
+                filters['end_date'] = today.replace(day=1) + relativedelta(months=1)
             elif period == 'prev_month':
                 end = today.replace(day=1)
                 filters['start_date'] = end - relativedelta(months=1)
                 filters['end_date'] = end
             elif period == 'year':
                 filters['start_date'] = today.replace(month=1, day=1)
+                filters['end_date'] = today.replace(month=1, day=1) + relativedelta(years=1)
             elif period == 'prev_year':
                 end = today.replace(month=1, day=1)
                 filters['start_date'] = end - relativedelta(years=1)
@@ -53,6 +57,7 @@ class ReportService(BaseService):
             elif period == 'quarter':
                 quarter = ((today.month - 1) // 3) + 1
                 filters['start_date'] = datetime(today.year, quarter * 3 - 2, 1)
+                filters['end_date'] = datetime(today.year, (quarter+1) * 3 - 2, 1)
             elif period == 'prev_quarter':
                 quarter = ((today.month - 1) // 3) + 1
                 end = datetime(today.year, quarter * 3 - 2, 1)
@@ -81,12 +86,13 @@ class ReportService(BaseService):
                 FROM categories AS c
                 INNER JOIN cat
                     ON c.user_id = cat.user_id AND c.parent_id = cat.id
+                WHERE c.parent_id IS NOT NULL
             ), selected AS (
                 SELECT
                     o.id,
                     types.name AS type_name,
                     CASE WHEN types.name = 'income' THEN o.amount
-                         WHEN types.name = 'outcome' THEN -o.amount
+                         WHEN types.name = 'expenditure' THEN -o.amount
                     END AS amount,
                     cat.path AS category_path,
                     o.description,
@@ -139,19 +145,20 @@ class ReportService(BaseService):
         return query, params
 
     def _build_report(self, rows, categories, page_size):
-        total_amount = rows[0]['total_amount']
-        total_items = rows[0]['total_items']
-        total_pages = math.ceil(total_items / page_size)
+        print([dict(row) for row in rows])
         operations = []
         for row in rows:
-            categories_ids = [
-                int(part[1:-1])
-                for part in row['category_path'].split('.')
-            ]
+            if not row['category_path']:
+                categories_ids = []
+            else:
+                categories_ids = [
+                    int(part[1:-1])
+                    for part in row['category_path'].split('.')
+                ]
             operation = {
                 'id': row['id'],
-                'operation_date': datetime.fromtimestamp(row['operation_date']).isoformat(),
-                'created_date': datetime.fromtimestamp(row['created_date']).isoformat(),
+                'operation_date': row['operation_date'],
+                'created_date': row['created_date'],
                 'type_name': row['type_name'],
                 'amount': row['amount'],
                 'description': row['description'],
@@ -161,6 +168,14 @@ class ReportService(BaseService):
                 ]
             }
             operations.append(operation)
+        if not operations:
+            total_amount = 0
+            total_items = 0
+            total_pages = 0
+        else:
+            total_amount = rows[0]['total_amount']
+            total_items = rows[0]['total_items']
+            total_pages = math.ceil(total_items / page_size)
         return {
             'operations': operations,
             'total_amount': total_amount,
