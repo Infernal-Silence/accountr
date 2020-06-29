@@ -6,13 +6,21 @@ from dateutil.relativedelta import relativedelta, MO
 from .base import BaseService
 from .categories import CategoriesService
 
+"""
+Обработка работы с отчетом по операциям (/report)
+get_report - получение информации об операциях авторизованного пользователя
+"""
+
 
 class ReportService(BaseService):
-    def get_report(self, user_id, qs):
-        page = int(qs.get('page', 1))
-        page_size = int(qs.get('page_size', 20))
-        filters = self._prepare_filters(user_id, qs)
-        query, params = self._build_report_query(filters, page, page_size)
+    def get_report(self, user_id, query_string):
+        """
+        Возвращает информацию об операциях пользователя user_id в виде словаря с учетом фильтров query_string
+        """
+        page = int(query_string.get('page', 1))
+        page_size = int(query_string.get('page_size', 20))
+        query_string = self._prepare_filters(user_id, query_string)
+        query, params = self._build_report_query(query_string, page, page_size)
         cur = self.connection.execute(query, params)
         rows = cur.fetchall()
 
@@ -27,16 +35,19 @@ class ReportService(BaseService):
         }
         return self._build_report(rows, categories, page_size)
 
-    def _prepare_filters(self, user_id, qs):
+    def _prepare_filters(self, user_id, query_string):
+        """
+        Парсит query_string и возвращает список фильтров
+        """
         filters = {'user_id': user_id}
-        if 'start_date' in qs:
-            filters['start_date'] = datetime.fromisoformat(qs['start_date'])
-        if 'end_date' in qs:
-            filters['end_date'] = datetime.fromisoformat(qs['end_date'])
-        if 'category_id' in qs:
-            filters['category_id'] = qs['category_id']
-        if 'period' in qs:
-            period = qs['period']
+        if 'start_date' in query_string:
+            filters['start_date'] = datetime.fromisoformat(query_string['start_date'])
+        if 'end_date' in query_string:
+            filters['end_date'] = datetime.fromisoformat(query_string['end_date'])
+        if 'category_id' in query_string:
+            filters['category_id'] = query_string['category_id']
+        if 'period' in query_string:
+            period = query_string['period']
             today = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
             if period == 'week':
                 filters['start_date'] = today + relativedelta(weekday=MO(-1))
@@ -70,6 +81,10 @@ class ReportService(BaseService):
         return filters
 
     def _build_report_query(self, filters, page, page_size):
+        """
+        Возвращает sql запрос и параметры с учетом списка фильтров и пагинации
+        """
+
         query_template = """
             WITH RECURSIVE cat (id, user_id, name, parent_id, path) AS (
                 SELECT id,
@@ -149,6 +164,11 @@ class ReportService(BaseService):
         return query, params
 
     def _build_report(self, rows, categories, page_size):
+        """
+        Собирает отчет из результата sql запроса rows, списка категорий categories ис учетом размера страницы page_size
+        Возращает словарь сложной структуры
+        """
+
         operations = []
         for row in rows:
             if not row['category_path']:
