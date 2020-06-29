@@ -539,6 +539,8 @@ end_date: str?
     operations: []
 }
 ```
+- Возможные значения поля `period`: `week`, `prev_week`, `month`, `prev_month`, `quarter`, `prev_quarter`, `year`, `prev_year`
+- Формат даты для полей `start_date`, `end_date`: `YYYY-MM-DD HH-MM-SS`
 
 ----
 [К оглавлению](#спецификация-api)
