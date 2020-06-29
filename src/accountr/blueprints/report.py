@@ -18,6 +18,10 @@ bp = Blueprint('report', __name__)
 @bp.route('')
 @auth_required
 def get_report(user):
+    """
+    Обработка запросов отчета по операциям (/report)
+    get_report - получение информации об операциях авторизованного пользователя
+    """
     user_id = user['id']
     if request.args.get('period') and (request.args.get('start_date') or request.args.get('end_date')):
         return '', HTTPStatus.BAD_REQUEST
