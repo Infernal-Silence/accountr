@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "de187276-2e22-443b-93ed-77627ec9c76a",
-		"name": "Работа с пользователями",
+		"_postman_id": "ee321841-57e6-4fcc-bf53-dae672166eb3",
+		"name": "Users",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -11,7 +11,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3fe48029-2697-47e1-af72-32b80abea2e0",
+						"id": "c578823a-61f3-468a-a0e0-b1ffbd1d1df0",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -63,7 +63,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "9e28b006-e3a5-4880-9ebe-f2131a3ff7b7",
+						"id": "f63ef264-316e-4f91-8d0f-3a85027c7ddf",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(409);\r",
@@ -108,7 +108,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "1f1cc1b0-fefc-4e6a-82cd-9b1135413744",
+						"id": "0790bb97-ee28-4c75-91c2-75f467de74bc",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(403);\r",
@@ -154,7 +154,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d42ce35c-95af-482c-9d76-8be9a138f3a1",
+						"id": "677daad6-5f81-4ba2-9406-496ff039a168",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(403);\r",
@@ -200,7 +200,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "2cd2910c-c31a-4e73-878f-2c7694861cd8",
+						"id": "e193f22a-a5e3-46cf-951a-7b8e9cf696e4",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -246,7 +246,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e779704f-b3fd-4129-8abd-2a24e3585318",
+						"id": "0b310ae2-a9fd-4bda-a7b1-08dbef91d1e5",
 						"exec": [
 							"pm.test(\"Successful GET request\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -289,7 +289,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f533db61-1ce3-4571-9cf9-5ed640575469",
+						"id": "fb4352a1-d75f-4519-a432-8ed35902224d",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -341,7 +341,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "48e0dfff-fe0a-47cd-bf30-62ef7a8aa602",
+						"id": "cc97b3d6-0424-4875-82f6-748a75ca72ba",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -378,7 +378,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "82a3d1ea-e85c-40d4-9b1f-292e4ca3b6fa",
+						"id": "dca7bd79-33f9-4a31-b439-e9758ce70ad5",
 						"exec": [
 							"pm.test(\"Successful GET request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(401);\r",
@@ -414,7 +414,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "7d32832f-273c-464a-afb8-de3083ab0c83",
+						"id": "69adb2de-dfb7-42a7-8352-8e79dbd60c19",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(403);\r",
@@ -460,7 +460,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "69579188-4c1e-46f8-b6ba-b54ba83a5499",
+						"id": "b6019e62-d2b1-41f2-be5c-6945b67e65a7",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -506,7 +506,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "7006d1ca-d7b1-4c54-8e3e-66246485124a",
+						"id": "bc8730b8-e151-43e2-9b18-60af742e8093",
 						"exec": [
 							"pm.test(\"Successful GET request\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
@@ -549,7 +549,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "65aaf227-10fe-4c15-b23c-712e086dfe81",
+						"id": "82a6a71d-2064-44af-82d8-0048504d1f60",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",

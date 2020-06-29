@@ -1,27 +1,358 @@
 {
 	"info": {
+<<<<<<< HEAD
 		"_postman_id": "fa86d8ff-587f-451a-9e78-f3214e6051ac",
 		"name": "Получение отчётов",
+=======
+		"_postman_id": "908e92f0-c8d5-4786-87c7-91575ff91443",
+		"name": "Report",
+>>>>>>> 85833555bd84388ebd26d60b2778f95a6ae93668
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
+<<<<<<< HEAD
 			"name": "Получение отчёта для пользователя user1 с категорией 1",
+=======
+			"name": "Получение created_date для всех операций user2",
+			"item": [
+				{
+					"name": "Login user2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8c432ffe-9695-426e-a177-9d7d45139f81",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"user2@gmail.com\",\n\t\"password\": \"user2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/auth/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получение create_date для operation1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e61f7767-ae58-4d8a-8205-6d6e36abf3fd",
+								"exec": [
+									"pm.test(\"Successful GET request\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"    var jsonData = pm.response.json();\r",
+									"\r",
+									"    var cr_dates = pm.globals.get(\"CreateDates\");\r",
+									"    cr_dates = [0];\r",
+									"    cr_dates[jsonData.id] = jsonData.created_date;\r",
+									"    cr_dates[2] = 0;\r",
+									"    pm.globals.set(\"CreateDates\", cr_dates);\r",
+									"    console.log(pm.globals.get(\"CreateDates\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/operations/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"operations",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout user2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ee3c5907-3f2f-427c-9e43-ae81a9330ccd",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/auth/logout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Получение created_date для всех операций user1",
+			"item": [
+				{
+					"name": "Login user1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3cd3eee2-61fd-420d-a0ef-25baf8148b2a",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"user1@gmail.com\",\n\t\"password\": \"user1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/auth/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получение create_date для operation3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fa223df4-56d1-4d09-92a8-eef0f24c6206",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"    var jsonData = pm.response.json();\r",
+									"\r",
+									"    var cr_dates = pm.globals.get(\"CreateDates\");\r",
+									"    cr_dates[jsonData.id] = jsonData.created_date;\r",
+									"    pm.globals.set(\"CreateDates\", cr_dates);\r",
+									"    console.log(pm.globals.get(\"CreateDates\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/operations/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"operations",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout user1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cbf9097c-e16a-42f0-b179-4c174f8d445b",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/auth/logout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8fcce2e6-c2e6-4d80-9a7c-faf514dc1002",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "07e4f23b-9c6e-48a5-9c97-a0c8cafbd57b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Login user2",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "1f23d789-8337-4ad9-93be-90f58cd53067",
+						"id": "2b9b9ecd-84d7-47e6-90f2-21655d59737f",
 						"exec": [
-							"pm.test(\"Successful GET request\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
+							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
-							"    pm.expect(jsonData).to.include({\r",
-							"        total_amount: 0,\r",
-							"        operations: [],\r",
-							"        total_pages: 0,\r",
-							"        total_items: 0 \r",
-							"    })\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -29,10 +360,206 @@
 				}
 			],
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"user2@gmail.com\",\n\t\"password\": \"user2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/report?category_id=1",
+					"raw": "http://127.0.0.1:5000/auth/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение всех операций user2 без фильтров",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fcc00aab-2425-472a-b5c6-e2045261ffbc",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var cr_dates = pm.globals.get(\"CreateDates\");\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"   \r",
+							"  pm.expect(jsonData).to.include({\r",
+							"        total_amount: -666,\r",
+							"        total_pages: 1,\r",
+							"        total_items: 1 \r",
+							"    });\r",
+							"    pm.expect(jsonData.operations.length).to.eql(1);\r",
+							"\r",
+							"    pm.expect(jsonData.operations[0]).to.include({\r",
+							"        amount: -666,\r",
+							"        description: \"измененная операция\",        \r",
+							"        id: 1,\r",
+							"        created_date: cr_dates[jsonData.operations[0].id],\r",
+							"        operation_date: \"2020-06-26 20:20:20\",\r",
+							"        type_name: \"expenditure\",\r",
+							"    });\r",
+							"    pm.expect(jsonData.operations[0].categories.length).to.eql(1);\r",
+							"    pm.expect(jsonData.operations[0].categories).to.have.deep.members([{\r",
+							"      id: 6,\r",
+							"      name: \"еда\",\r",
+							"      parent_id: null\r",
+							"    }]);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение операций user2 по категории id=6",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b37f3db4-df44-4cfe-bc1d-0567f9dca706",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var cr_dates = pm.globals.get(\"CreateDates\");\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"   \r",
+							"  pm.expect(jsonData).to.include({\r",
+							"        total_amount: -666,\r",
+							"        total_pages: 1,\r",
+							"        total_items: 1 \r",
+							"    });\r",
+							"    pm.expect(jsonData.operations.length).to.eql(1);\r",
+							"\r",
+							"    pm.expect(jsonData.operations[0]).to.include({\r",
+							"        amount: -666,\r",
+							"        description: \"измененная операция\",        \r",
+							"        id: 1,\r",
+							"        created_date: cr_dates[jsonData.operations[0].id],\r",
+							"        operation_date: \"2020-06-26 20:20:20\",\r",
+							"        type_name: \"expenditure\",\r",
+							"    });\r",
+							"    pm.expect(jsonData.operations[0].categories.length).to.eql(1);\r",
+							"    pm.expect(jsonData.operations[0].categories).to.have.deep.members([{\r",
+							"      id: 6,\r",
+							"      name: \"еда\",\r",
+							"      parent_id: null\r",
+							"    }]);\r",
+							"});\r",
+							"\r",
+							"/*\r",
+							"{\r",
+							"  \"operations\": [\r",
+							"    {\r",
+							"      \"amount\": -666,\r",
+							"      \"categories\": [\r",
+							"        {\r",
+							"          \"id\": 6,\r",
+							"          \"name\": \"еда\",\r",
+							"          \"parent_id\": null,\r",
+							"          \"user_id\": 2\r",
+							"        }\r",
+							"      ],\r",
+							"      \"created_date\": \"2020-06-28 13:19:42\",\r",
+							"      \"description\": \"измененная операция\",\r",
+							"      \"id\": 1,\r",
+							"      \"operation_date\": \"2020-06-26 20:20:20\",\r",
+							"      \"type_name\": \"expenditure\"\r",
+							"    }\r",
+							"  ],\r",
+							"  \"total_amount\": -666,\r",
+							"  \"total_items\": 1,\r",
+							"  \"total_pages\": 1\r",
+							"}\r",
+							" */"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?category_id=6",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -47,19 +574,136 @@
 					"query": [
 						{
 							"key": "category_id",
-							"value": "1"
+							"value": "6",
+							"description": "категория пивко"
 						}
 					]
-				}
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
 			},
 			"response": []
 		},
 		{
-			"name": "Получение отчёта для пользователя user1 с любой категорией",
+			"name": "Получение операций user2 по категории id=5 (получение пустого отчёта)",
+>>>>>>> 85833555bd84388ebd26d60b2778f95a6ae93668
 			"event": [
 				{
 					"listen": "test",
 					"script": {
+<<<<<<< HEAD
+						"id": "1f23d789-8337-4ad9-93be-90f58cd53067",
+						"exec": [
+							"pm.test(\"Successful GET request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        total_amount: 0,\r",
+							"        operations: [],\r",
+							"        total_pages: 0,\r",
+							"        total_items: 0 \r",
+							"    })\r",
+							"});"
+=======
+						"id": "fac5add2-4cf3-476a-ac09-a5872ae5b129",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        total_amount: 0,\r",
+							"        total_pages: 0,\r",
+							"        total_items: 0 \r",
+							"    });\r",
+							"    pm.expect(jsonData.operations.length).to.eql(0);\r",
+							"});\r",
+							"/*\r",
+							"{\r",
+							"  \"operations\": [],\r",
+							"  \"total_amount\": 0,\r",
+							"  \"total_items\": 0,\r",
+							"  \"total_pages\": 0\r",
+							"}\r",
+							" */"
+>>>>>>> 85833555bd84388ebd26d60b2778f95a6ae93668
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+<<<<<<< HEAD
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?category_id=1",
+=======
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?category_id=5",
+>>>>>>> 85833555bd84388ebd26d60b2778f95a6ae93668
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					],
+					"query": [
+						{
+							"key": "category_id",
+<<<<<<< HEAD
+							"value": "1"
+						}
+					]
+				}
+=======
+							"value": "5",
+							"description": "категория пивко"
+						}
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+>>>>>>> 85833555bd84388ebd26d60b2778f95a6ae93668
+			},
+			"response": []
+		},
+		{
+<<<<<<< HEAD
+			"name": "Получение отчёта для пользователя user1 с любой категорией",
+=======
+			"name": "Получение операций user2 по заданным датам",
+>>>>>>> 85833555bd84388ebd26d60b2778f95a6ae93668
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+<<<<<<< HEAD
 						"id": "811dfc2c-ddf8-4ead-a40f-3f9b8291ab95",
 						"exec": [
 							"pm.test(\"Successful GET request\", function () {\r",
@@ -82,14 +726,1659 @@
 							"        total_items: 1 \r",
 							"    })\r",
 							"});"
+=======
+						"id": "428ef521-91be-4725-b530-94b2e6887fa0",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var cr_dates = pm.globals.get(\"CreateDates\");\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"   \r",
+							"  pm.expect(jsonData).to.include({\r",
+							"        total_amount: -666,\r",
+							"        total_pages: 1,\r",
+							"        total_items: 1 \r",
+							"    });\r",
+							"    pm.expect(jsonData.operations.length).to.eql(1);\r",
+							"\r",
+							"    pm.expect(jsonData.operations[0]).to.include({\r",
+							"        amount: -666,\r",
+							"        description: \"измененная операция\",        \r",
+							"        id: 1,\r",
+							"        created_date: cr_dates[jsonData.operations[0].id],\r",
+							"        operation_date: \"2020-06-26 20:20:20\",\r",
+							"        type_name: \"expenditure\",\r",
+							"    });\r",
+							"    pm.expect(jsonData.operations[0].categories.length).to.eql(1);\r",
+							"    pm.expect(jsonData.operations[0].categories).to.have.deep.members([{\r",
+							"      id: 6,\r",
+							"      name: \"еда\",\r",
+							"      parent_id: null\r",
+							"    }]);\r",
+							"});\r",
+							"/**\r",
+							" * {\r",
+							"  \"operations\": [\r",
+							"    {\r",
+							"      \"amount\": -666,\r",
+							"      \"categories\": [\r",
+							"        {\r",
+							"          \"id\": 6,\r",
+							"          \"name\": \"еда\",\r",
+							"          \"parent_id\": null,\r",
+							"          \"user_id\": 2\r",
+							"        }\r",
+							"      ],\r",
+							"      \"created_date\": \"2020-06-28 13:19:42\",\r",
+							"      \"description\": \"измененная операция\",\r",
+							"      \"id\": 1,\r",
+							"      \"operation_date\": \"2020-06-26 20:20:20\",\r",
+							"      \"type_name\": \"expenditure\"\r",
+							"    }\r",
+							"  ],\r",
+							"  \"total_amount\": -666,\r",
+							"  \"total_items\": 1,\r",
+							"  \"total_pages\": 1\r",
+							"}\r",
+							" */"
+>>>>>>> 85833555bd84388ebd26d60b2778f95a6ae93668
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+<<<<<<< HEAD
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/report",
+=======
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?start_date=2020-06-26 00:00:00&end_date=2020-06-26 23:59:59",
+>>>>>>> 85833555bd84388ebd26d60b2778f95a6ae93668
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+<<<<<<< HEAD
+					]
+				}
+			},
+			"response": []
+=======
+					],
+					"query": [
+						{
+							"key": "start_date",
+							"value": "2020-06-26 00:00:00"
+						},
+						{
+							"key": "end_date",
+							"value": "2020-06-26 23:59:59"
+						}
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение операций user2 по заданным датам так, чтобы не было ни одной операции",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "61064290-df35-4ebc-8021-ad19c0173edb",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        total_amount: 0,\r",
+							"        total_pages: 0,\r",
+							"        total_items: 0 \r",
+							"    });\r",
+							"    pm.expect(jsonData.operations.length).to.eql(0);\r",
+							"});\r",
+							"/**\r",
+							" * {\r",
+							"  \"operations\": [],\r",
+							"  \"total_amount\": 0,\r",
+							"  \"total_items\": 0,\r",
+							"  \"total_pages\": 0\r",
+							"}\r",
+							" */"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?start_date=2020-06-26 00:00:00&end_date=2020-06-26 19:59:59",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					],
+					"query": [
+						{
+							"key": "start_date",
+							"value": "2020-06-26 00:00:00"
+						},
+						{
+							"key": "end_date",
+							"value": "2020-06-26 19:59:59"
+						}
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
+			"name": "Создание операции для user2 за текущую неделю",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0c1350d8-1f1c-44ef-b8d4-f3fead7de964",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(201);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        amount: 100,\r",
+							"        description: null,\r",
+							"        category_id: 7,\r",
+							"        operation_date: \"2020-06-29 02:00:00\",\r",
+							"        type_id: 1,\r",
+							"        user_id: 2\r",
+							"    });\r",
+							"\r",
+							"    var cr_dates = pm.globals.get(\"CreateDates\");\r",
+							"    cr_dates[jsonData.id] = jsonData.created_date;\r",
+							"    pm.globals.set(\"CreateDates\", cr_dates);\r",
+							"    console.log(pm.globals.get(\"CreateDates\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\": 2,\r\n    \"type_id\": 1,\r\n    \"category_id\": 7, \r\n    \"amount\": 100,\r\n    \"operation_date\": \"2020-06-29 02:00:00\"\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/operations",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"operations"
+					]
+				},
+				"description": "URL: /operations/\r\n\r\nМетод: POST\r\n\r\nЗапрос:\r\n\r\n{\r\n    user_id: int,\r\n    type_id: int,\r\n    category_id: int?,\r\n    amount: float?,\r\n    operation_date: datetime,\r\n    description: str?    \r\n}\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    user_id: int,\r\n    type_id: int,\r\n    category_id: int,\r\n    amount: float,\r\n    operation_date: date,\r\n    created_date: date,\r\n    description: str\r\n}\r\n\r\nКоды:\r\n201 - ОК\r\n401 - пользователь не авторизован\r\n404 - задан не существующий тип или категория"
+			},
+			"response": []
+		},
+		{
+			"name": "Создание операции для user2 за текущий месяц",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6deef2b9-34b7-476f-8203-d042aa83eea1",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(201);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        amount: 1000,\r",
+							"        description: null,\r",
+							"        category_id: 7,\r",
+							"        operation_date: \"2020-06-07 10:00:00\",\r",
+							"        type_id: 1,\r",
+							"        user_id: 2\r",
+							"    });\r",
+							"\r",
+							"    var cr_dates = pm.globals.get(\"CreateDates\");\r",
+							"    cr_dates[jsonData.id] = jsonData.created_date;\r",
+							"    pm.globals.set(\"CreateDates\", cr_dates);\r",
+							"    console.log(pm.globals.get(\"CreateDates\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\": 2,\r\n    \"type_id\": 1,\r\n    \"category_id\": 7, \r\n    \"amount\": 1000,\r\n    \"operation_date\": \"2020-06-07 10:00:00\"\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/operations",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"operations"
+					]
+				},
+				"description": "URL: /operations/\r\n\r\nМетод: POST\r\n\r\nЗапрос:\r\n\r\n{\r\n    user_id: int,\r\n    type_id: int,\r\n    category_id: int?,\r\n    amount: float?,\r\n    operation_date: datetime,\r\n    description: str?    \r\n}\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    user_id: int,\r\n    type_id: int,\r\n    category_id: int,\r\n    amount: float,\r\n    operation_date: date,\r\n    created_date: date,\r\n    description: str\r\n}\r\n\r\nКоды:\r\n201 - ОК\r\n401 - пользователь не авторизован\r\n404 - задан не существующий тип или категория"
+			},
+			"response": []
+		},
+		{
+			"name": "Создание операции для user2 за предыдущую неделю",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dbed6721-974c-46fd-b003-5fee4144eda5",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(201);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        amount: 500,\r",
+							"        category_id: 7,\r",
+							"        description: null,\r",
+							"        operation_date: \"2020-06-28 10:00:00\",\r",
+							"        type_id: 1,\r",
+							"        user_id: 2\r",
+							"    });\r",
+							"\r",
+							"    var cr_dates = pm.globals.get(\"CreateDates\");\r",
+							"    cr_dates[jsonData.id] = jsonData.created_date;\r",
+							"    pm.globals.set(\"CreateDates\", cr_dates);\r",
+							"    console.log(pm.globals.get(\"CreateDates\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\": 2,\r\n    \"type_id\": 1,\r\n    \"category_id\": 7, \r\n    \"amount\": 500,\r\n    \"operation_date\": \"2020-06-28 10:00:00\"\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/operations",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"operations"
+					]
+				},
+				"description": "URL: /operations/\r\n\r\nМетод: POST\r\n\r\nЗапрос:\r\n\r\n{\r\n    user_id: int,\r\n    type_id: int,\r\n    category_id: int?,\r\n    amount: float?,\r\n    operation_date: datetime,\r\n    description: str?    \r\n}\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    user_id: int,\r\n    type_id: int,\r\n    category_id: int,\r\n    amount: float,\r\n    operation_date: date,\r\n    created_date: date,\r\n    description: str\r\n}\r\n\r\nКоды:\r\n201 - ОК\r\n401 - пользователь не авторизован\r\n404 - задан не существующий тип или категория"
+			},
+			"response": []
+		},
+		{
+			"name": "Создание операции для user2 за  текущий квартал (предыдущий месяц)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "42d1a79a-40a1-4011-ab25-cbebaf0e8d8b",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(201);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        amount: 5555,\r",
+							"        category_id: 7,\r",
+							"        description: null,\r",
+							"        operation_date: \"2020-05-01 10:00:00\",\r",
+							"        type_id: 1,\r",
+							"        user_id: 2\r",
+							"    });\r",
+							"\r",
+							"    var cr_dates = pm.globals.get(\"CreateDates\");\r",
+							"    cr_dates[jsonData.id] = jsonData.created_date;\r",
+							"    pm.globals.set(\"CreateDates\", cr_dates);\r",
+							"    console.log(pm.globals.get(\"CreateDates\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\": 2,\r\n    \"type_id\": 1,\r\n    \"category_id\": 7, \r\n    \"amount\": 5555,\r\n    \"operation_date\": \"2020-05-01 10:00:00\"\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/operations",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"operations"
+					]
+				},
+				"description": "URL: /operations/\r\n\r\nМетод: POST\r\n\r\nЗапрос:\r\n\r\n{\r\n    user_id: int,\r\n    type_id: int,\r\n    category_id: int?,\r\n    amount: float?,\r\n    operation_date: datetime,\r\n    description: str?    \r\n}\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    user_id: int,\r\n    type_id: int,\r\n    category_id: int,\r\n    amount: float,\r\n    operation_date: date,\r\n    created_date: date,\r\n    description: str\r\n}\r\n\r\nКоды:\r\n201 - ОК\r\n401 - пользователь не авторизован\r\n404 - задан не существующий тип или категория"
+			},
+			"response": []
+		},
+		{
+			"name": "Создание операции для user2 за  предыдущий квартал",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d4047821-e7d5-42cf-a3f7-91ee487a3897",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(201);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        amount: 9000,\r",
+							"        category_id: 7,\r",
+							"        description: null,\r",
+							"        operation_date: \"2020-02-29 10:00:00\",\r",
+							"        type_id: 1,\r",
+							"        user_id: 2\r",
+							"    });\r",
+							"\r",
+							"    var cr_dates = pm.globals.get(\"CreateDates\");\r",
+							"    cr_dates[jsonData.id] = jsonData.created_date;\r",
+							"    pm.globals.set(\"CreateDates\", cr_dates);\r",
+							"    console.log(pm.globals.get(\"CreateDates\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\": 2,\r\n    \"type_id\": 1,\r\n    \"category_id\": 7, \r\n    \"amount\": 9000,\r\n    \"operation_date\": \"2020-02-29 10:00:00\"\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/operations",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"operations"
+					]
+				},
+				"description": "URL: /operations/\r\n\r\nМетод: POST\r\n\r\nЗапрос:\r\n\r\n{\r\n    user_id: int,\r\n    type_id: int,\r\n    category_id: int?,\r\n    amount: float?,\r\n    operation_date: datetime,\r\n    description: str?    \r\n}\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    user_id: int,\r\n    type_id: int,\r\n    category_id: int,\r\n    amount: float,\r\n    operation_date: date,\r\n    created_date: date,\r\n    description: str\r\n}\r\n\r\nКоды:\r\n201 - ОК\r\n401 - пользователь не авторизован\r\n404 - задан не существующий тип или категория"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение операций user2 за  текущую неделю",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "df65a2dd-15b8-421e-acf0-605f0c4c0f04",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        total_amount: 0,\r",
+							"        total_pages: 0,\r",
+							"        total_items: 0 \r",
+							"    });\r",
+							"    pm.expect(jsonData.operations.length).to.eql(0);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?period=week",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					],
+					"query": [
+						{
+							"key": "period",
+							"value": "week"
+						}
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение операций user2, если указать одновременно period, end_date, start_date",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9b3f761a-6075-4824-8f89-b9bfa2757d3d",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(400);\r",
+							"   \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?period=week&start_date=2020-06-27 00:00:00",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					],
+					"query": [
+						{
+							"key": "period",
+							"value": "week"
+						},
+						{
+							"key": "start_date",
+							"value": "2020-06-27 00:00:00"
+						},
+						{
+							"key": "end_date",
+							"value": "2020-06-26 23:59:59",
+							"disabled": true
+						}
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение операций user2 за  предыдущую неделю",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b1c5c122-e66a-429c-82bc-36e79b091422",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var cr_dates = pm.globals.get(\"CreateDates\");\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"   \r",
+							"  pm.expect(jsonData).to.include({\r",
+							"        total_amount: -166,\r",
+							"        total_pages: 1,\r",
+							"        total_items: 2 \r",
+							"    });\r",
+							"    pm.expect(jsonData.operations.length).to.eql(2);\r",
+							"\r",
+							"    pm.expect(jsonData.operations[0]).to.include({\r",
+							"        amount: -666,\r",
+							"        description: \"измененная операция\",        \r",
+							"        id: 1,\r",
+							"        created_date: cr_dates[jsonData.operations[0].id],\r",
+							"        operation_date: \"2020-06-26 20:20:20\",\r",
+							"        type_name: \"expenditure\",\r",
+							"    });\r",
+							"    pm.expect(jsonData.operations[0].categories.length).to.eql(1);\r",
+							"    pm.expect(jsonData.operations[0].categories).to.have.deep.members([{\r",
+							"      id: 6,\r",
+							"      name: \"еда\",\r",
+							"      parent_id: null\r",
+							"    }]);\r",
+							"\r",
+							"    pm.expect(jsonData.operations[1]).to.include({\r",
+							"        amount: 500,\r",
+							"        description: null,        \r",
+							"        id: 6,\r",
+							"        created_date: cr_dates[jsonData.operations[1].id],\r",
+							"        operation_date: \"2020-06-28 10:00:00\",\r",
+							"        type_name: \"income\",\r",
+							"    });\r",
+							"    pm.expect(jsonData.operations[1].categories.length).to.eql(2);\r",
+							"    pm.expect(jsonData.operations[1].categories).to.have.deep.members([\r",
+							"        {\r",
+							"        id: 6,\r",
+							"        name: \"еда\",\r",
+							"        parent_id: null\r",
+							"        },\r",
+							"        {\r",
+							"        id: 7,\r",
+							"        name: \"пивко\",\r",
+							"        parent_id: 6\r",
+							"        }\r",
+							"        ]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?period=prev_week",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					],
+					"query": [
+						{
+							"key": "period",
+							"value": "prev_week"
+						}
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение операций user2 за  предыдущую неделю с пагинацией по 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9b2ade9-f4b8-4404-934d-eb281e9848a8",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?period=prev_week&page_size=1&page=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					],
+					"query": [
+						{
+							"key": "period",
+							"value": "prev_week"
+						},
+						{
+							"key": "page_size",
+							"value": "1"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение операций user2 за текущий месяц",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5500745c-bbe8-4e78-a07e-b81e1a41eb72",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?period=month",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					],
+					"query": [
+						{
+							"key": "period",
+							"value": "month"
+						}
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение операций user2 за предыдущий месяц",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fc6c96ff-15e7-4825-9d83-98f2067baed1",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?period=prev_month",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					],
+					"query": [
+						{
+							"key": "period",
+							"value": "prev_month"
+						}
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение операций user2 за текущий квартал",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "35dba5cd-5ef0-4d21-917f-2fc0bc555e5f",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?period=quarter",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					],
+					"query": [
+						{
+							"key": "period",
+							"value": "quarter"
+						}
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение операций user2 за предыдущий квартал",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cf121099-c0e0-43e7-9997-4348b5f3f130",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?period=prev_quarter",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					],
+					"query": [
+						{
+							"key": "period",
+							"value": "prev_quarter"
+						}
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение операций user2 за текущий год",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c404b98d-2817-4243-bb24-dbd5887d06fb",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?period=year",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					],
+					"query": [
+						{
+							"key": "period",
+							"value": "year"
+						}
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение операций user2 за предыдущий год",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0d3f7924-b352-4ac0-8b6e-4781c5582068",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        total_amount: 0,\r",
+							"        total_pages: 0,\r",
+							"        total_items: 0 \r",
+							"    });\r",
+							"    pm.expect(jsonData.operations.length).to.eql(0);\r",
+							"    \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?period=prev_year",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					],
+					"query": [
+						{
+							"key": "period",
+							"value": "prev_year"
+						}
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение всех операций user2 без фильтров с пагинацией по 2 и page = 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3706b8f2-8a8d-4124-bde3-b440709f97db",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    \r",
+							"});\r",
+							"/* \r",
+							"{\r",
+							"  \"operations\": [\r",
+							"    {\r",
+							"      \"amount\": -666,\r",
+							"      \"categories\": [\r",
+							"        {\r",
+							"          \"id\": 6,\r",
+							"          \"name\": \"еда\",\r",
+							"          \"parent_id\": null,\r",
+							"          \"user_id\": 2\r",
+							"        }\r",
+							"      ],\r",
+							"      \"created_date\": \"2020-06-28 13:19:42\",\r",
+							"      \"description\": \"измененная операция\",\r",
+							"      \"id\": 1,\r",
+							"      \"operation_date\": \"2020-06-26 20:20:20\",\r",
+							"      \"type_name\": \"expenditure\"\r",
+							"    }\r",
+							"  ],\r",
+							"  \"total_amount\": -666,\r",
+							"  \"total_items\": 1,\r",
+							"  \"total_pages\": 1\r",
+							"}\r",
+							"*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?page_size=2&page=2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					],
+					"query": [
+						{
+							"key": "page_size",
+							"value": "2"
+						},
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение всех операций user2 без фильтров с запросом страницы большей, чем операций",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7c444b45-e489-4bfa-8d61-2acdcdcd60ea",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"   \r",
+							"});\r",
+							"/* \r",
+							"{\r",
+							"  \"operations\": [\r",
+							"    {\r",
+							"      \"amount\": -666,\r",
+							"      \"categories\": [\r",
+							"        {\r",
+							"          \"id\": 6,\r",
+							"          \"name\": \"еда\",\r",
+							"          \"parent_id\": null,\r",
+							"          \"user_id\": 2\r",
+							"        }\r",
+							"      ],\r",
+							"      \"created_date\": \"2020-06-28 13:19:42\",\r",
+							"      \"description\": \"измененная операция\",\r",
+							"      \"id\": 1,\r",
+							"      \"operation_date\": \"2020-06-26 20:20:20\",\r",
+							"      \"type_name\": \"expenditure\"\r",
+							"    }\r",
+							"  ],\r",
+							"  \"total_amount\": -666,\r",
+							"  \"total_items\": 1,\r",
+							"  \"total_pages\": 1\r",
+							"}\r",
+							"*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?page_size=1&page=7",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					],
+					"query": [
+						{
+							"key": "page_size",
+							"value": "1"
+						},
+						{
+							"key": "page",
+							"value": "7"
+						}
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
+			"name": "Logout user2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f056618-e16c-4cd2-9da5-76fce4166dbf",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/auth/logout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login user1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "45b993dd-973c-4c18-9606-3d0b3ca9b647",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"user1@gmail.com\",\n\t\"password\": \"user1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/auth/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Создание операции для user1 за  предыдущий год",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "77c6aab2-fb62-4d45-81b0-fbfda07a0930",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(201);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        amount: 2200,\r",
+							"        category_id: null,\r",
+							"        description: null,\r",
+							"        operation_date: \"2019-05-09 10:00:00\",\r",
+							"        type_id: 2,\r",
+							"        user_id: 1\r",
+							"    })\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\": \"1\",\r\n    \"type_id\": \"2\",\r\n    \"amount\": 2200,\r\n    \"operation_date\": \"2019-05-09 10:00:00\"\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/operations",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"operations"
+					]
+				},
+				"description": "URL: /operations/\r\n\r\nМетод: POST\r\n\r\nЗапрос:\r\n\r\n{\r\n    user_id: int,\r\n    type_id: int,\r\n    category_id: int?,\r\n    amount: float?,\r\n    operation_date: datetime,\r\n    description: str?    \r\n}\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    user_id: int,\r\n    type_id: int,\r\n    category_id: int,\r\n    amount: float,\r\n    operation_date: date,\r\n    created_date: date,\r\n    description: str\r\n}\r\n\r\nКоды:\r\n201 - ОК\r\n401 - пользователь не авторизован\r\n404 - задан не существующий тип или категория"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение всех операций user1 без фильтров",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3afd6b67-4709-4de4-abe8-3238da80ed53",
+						"exec": [
+							"pm.test(\"Successful GET category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
 				"url": {
 					"raw": "http://127.0.0.1:5000/report",
 					"protocol": "http",
@@ -103,9 +2392,201 @@
 					"path": [
 						"report"
 					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение операций user1 за предыдущий год",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "188af9ae-0356-4964-ba0c-743f57af5680",
+						"exec": [
+							"pm.test(\"Successful GET report\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report?period=prev_year",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					],
+					"query": [
+						{
+							"key": "period",
+							"value": "prev_year"
+						}
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		},
+		{
+			"name": "Logout user1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "834e570b-eec0-40e7-9ee4-2b1fbc286bae",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/auth/logout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"logout"
+					]
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Получение всех операций не авторизованным пользователем",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c63763c5-a553-4947-afa6-d85d2b90b787",
+						"exec": [
+							"pm.test(\"Successful GET report\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(401);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/report",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"report"
+					]
+				},
+				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "2f7dc7e3-08e0-48ae-9207-d06b6f0becfb",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c481e960-7da3-4f68-a806-1ef3424faa25",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+>>>>>>> 85833555bd84388ebd26d60b2778f95a6ae93668
 		}
 	],
 	"protocolProfileBehavior": {}
