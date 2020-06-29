@@ -28,7 +28,9 @@
 ---
 **?** - *необязательный парметр*
 
-**Формат времени:** `YYYY-MM-DD HH:MM:SS` [(ISO)](https://yandex.ru/support/partnermarket/export/date-format.html)
+**Формат времени:** *строка вида* `YYYY-MM-DD HH:MM:SS` [(ISO)](https://yandex.ru/support/partnermarket/export/date-format.html)
+
+*Все суммы, а именно параметры* **amount** *и* **total_amount**, *указываются и возвращаются в копейках*
 
 *Предполагается, что в запросе есть все обязательные параметры и их типы указаны корректно*
 
@@ -529,14 +531,17 @@ end_date: str?
 ```
 Примечания:
 - Если пользователь не был авторизован, возвращает код ошибки 401
-- Если пользователь пытается получить отчёт о другом пользователе (user_id из ссылки не соответсвует id авторизированного пользователя), возвращает код ошибки 403
 - Если за указанный период не было ни одной операции, должен вернуть следущий ответ:
 ```
 {
-    total_amount: 0,
-    operations: []
+  operations: [],
+  total_amount: 0,
+  total_items: 0,
+  total_pages: 0
 }
 ```
+- Возможные значения поля `period`: `week`, `prev_week`, `month`, `prev_month`, `quarter`, `prev_quarter`, `year`, `prev_year`
+- Формат даты для полей `start_date`, `end_date`: `YYYY-MM-DD HH-MM-SS`
 
 ----
 [К оглавлению](#спецификация-api)

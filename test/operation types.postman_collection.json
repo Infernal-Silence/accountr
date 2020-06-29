@@ -1,0 +1,326 @@
+{
+	"info": {
+		"_postman_id": "ef5b4d85-84a4-437c-8342-00eef5e9acaf",
+		"name": "Operation types",
+		"description": "red-studio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login user1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c4226916-218e-492a-99de-2a1026c6272b",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"user1@gmail.com\",\n\t\"password\": \"user1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/auth/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение всех типов",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e6aca34f-8526-4d30-9ebe-c7fcb7ee5c88",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/types",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"types"
+					]
+				},
+				"description": "URL: /types/\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nОтвет:\r\n\r\n[\r\n    {\r\n        id: int,\r\n        name: str\r\n    }\r\n]\r\n\r\n200 - ОК\r\n401 - пользователь не авторизован"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение типа операции",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "628f9ed7-f3e5-4251-b101-fe9b0fadbf27",
+						"exec": [
+							"pm.test(\"Successful GET request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"    pm.expect(jsonData).to.include({\r",
+							"        id: 2, \r",
+							"        name: \"expenditure\"\r",
+							"    })\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/types/2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"types",
+						"2"
+					]
+				},
+				"description": "URL: /types/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str\r\n}\r\n\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n404 - нет такого типа операции"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение типа неверной операции",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "273cad64-be30-40ce-a11b-3bdd74e7fdf7",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/types/-1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"types",
+						"-1"
+					]
+				},
+				"description": "URL: /types/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str\r\n}\r\n\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n404 - нет такого типа операции"
+			},
+			"response": []
+		},
+		{
+			"name": "Logout user1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "00e9b99d-e41a-4e2a-904d-d68c86e78df5",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"user1@gmail.com\",\n\t\"password\": \"user1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/auth/logout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение всех типов не авторизованным пользователем",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0e1d63ba-41cb-469f-8c7e-51a18bdd8e4f",
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/types",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"types"
+					]
+				},
+				"description": "URL: /types/\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nОтвет:\r\n\r\n[\r\n    {\r\n        id: int,\r\n        name: str\r\n    }\r\n]\r\n\r\n200 - ОК\r\n401 - пользователь не авторизован"
+			},
+			"response": []
+		},
+		{
+			"name": "Получение типа операции не авторизованным пользователем",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aa7b15d6-c5c5-4efe-b3aa-a5cc544df226",
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/types/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"types",
+						"1"
+					]
+				},
+				"description": "URL: /types/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str\r\n}\r\n\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n404 - нет такого типа операции"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

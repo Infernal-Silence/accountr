@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "efba770d-204d-47a1-8f4c-308e8ba646b1",
+		"_postman_id": "36c2f5bb-1405-4c8a-aac2-3af48b335474",
 		"name": "Categories",
 		"description": "red-studio\r\nОперации с категориями:\r\n- добавление категории\r\n- получение информации о категории\r\n- список категорий для пользователя\r\n- изменение категории\r\n- получение категории",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -15,7 +15,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "7196fe4a-8d68-4a6e-aca6-a282c5e38b68",
+								"id": "cd8c92af-d1d0-4237-96c1-62c9107de3b3",
 								"exec": [
 									"pm.test(\"Successful POST request\", function () {\r",
 									"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -61,7 +61,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "0264f9a7-6428-41ef-8d5d-6d6caf49fdcf",
+								"id": "76e6cdf7-f44d-421e-9b82-a709d0d2dea8",
 								"exec": [
 									"pm.test(\"Successful POST request\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
@@ -124,7 +124,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "fc568078-ca74-463f-9ebc-5521e6105714",
+								"id": "136eb2ba-33a8-4afc-9df7-de8732f3801b",
 								"exec": [
 									"pm.test(\"Successful POST request\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
@@ -186,7 +186,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "cd5e65f0-cc2f-42d0-9636-ebcd741970c1",
+								"id": "6d522331-1812-4dae-b0fb-75aed476025f",
 								"exec": [
 									"pm.test(\"Successful POST request\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
@@ -248,7 +248,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f8e93fa2-7c03-4917-9301-e8b9a30c6952",
+								"id": "1799b6ae-5c3f-417b-bdcb-1b6b948f272f",
 								"exec": [
 									"pm.test(\"Successful POST request\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
@@ -311,7 +311,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "98243a1c-6d4b-401b-ba1a-163fe5dd4fb0",
+								"id": "5b6be25d-0dc4-456a-a6bd-973eaadece46",
 								"exec": [
 									"pm.test(\"Successful POST request\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
@@ -374,7 +374,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "0acb2939-a29b-4eef-85e8-5d9547980597",
+								"id": "bc5efbc3-fa26-4285-877d-ebbc550de2ef",
 								"exec": [
 									"pm.test(\"Successful POST request\", function () {\r",
 									"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -426,7 +426,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "6451619d-432f-4839-b6eb-ff6e7fe1766d",
+								"id": "3f4134b6-431d-4e99-8e52-60b147bf33c5",
 								"exec": [
 									"pm.test(\"Successful POST request\", function () {\r",
 									"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -472,7 +472,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "08981ff0-ce60-47bf-bf90-445084c09140",
+								"id": "7798c273-e624-4f7b-9f66-3877ad22ad3f",
 								"exec": [
 									"pm.test(\"Successful POST request\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
@@ -530,12 +530,75 @@
 					"response": []
 				},
 				{
+					"name": "Создание дочерней категории пивко id=7 user2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9f4316e9-d3f0-41d3-ae7d-77bf551cc9ea",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(pm.response.code).to.eql(201);\r",
+									"    pm.expect(jsonData).to.include({\r",
+									"        id: 7, \r",
+									"        name: \"пивко\", \r",
+									"        parent_id: 6, \r",
+									"        user_id: 2 \r",
+									"    })\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"пивко\",\r\n    \"parent_id\": \"6\"\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/categories",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"categories"
+							]
+						},
+						"description": "URL: /categories/\r\n\r\nМетод: POST\r\n\r\nЗапрос:\r\n\r\n{\r\n    name: str,\r\n    parent_category_id: int?\r\n}\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n201 - ОК\r\n401 - пользователь не авторизован\r\n400 - нет родительской категории"
+					},
+					"response": []
+				},
+				{
 					"name": "Создание дочерней категории неверный родителяь (400)",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "32c664cd-460e-4975-8fea-562dd975f677",
+								"id": "3e5cb516-912a-4850-836b-8d9e20eb26fb",
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {\r",
 									"    pm.expect(pm.response.code).to.eql(400);\r",
@@ -590,7 +653,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "4bfc612b-e78b-440b-8f9c-ad8f456dc2d6",
+								"id": "c4706633-9785-4b16-97bf-57314b82c812",
 								"exec": [
 									"pm.test(\"Successful POST request\", function () {\r",
 									"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -639,7 +702,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "86f690c4-c28c-42ae-8263-6a36b9d0d9f6",
+						"id": "bb98a597-51b1-48dd-bd7c-de0fa97b7086",
 						"exec": [
 							"pm.test(\"Status code is 401\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(401);\r",
@@ -694,7 +757,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "cbdd7aaf-e142-4f45-b80e-59bf08f07b62",
+						"id": "0e9c4813-9b38-4c99-87ac-39cb2921e060",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -740,7 +803,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "625cf517-2d7a-410d-b056-d221f2cc21b2",
+						"id": "adff28f0-204c-4eec-a0d7-1133d253e7be",
 						"exec": [
 							"pm.test(\"Successful GET categories request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -797,7 +860,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "09f5b94f-1f7f-4659-b82e-f1d9aa9633f4",
+						"id": "14ee3748-c3d9-47e0-ace2-b8b2149f99b4",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -843,7 +906,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "5a06ad3f-b84b-4cb6-9828-29639debcd5f",
+						"id": "d1ae009d-3340-4dd9-9dfc-98f5a172834b",
 						"exec": [
 							"pm.test(\"GET categories for unauthorized user\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(401);\r",
@@ -899,7 +962,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3e70de83-5098-4068-8534-f60d61aa8974",
+						"id": "459aec17-506f-4a3f-8588-a7dc03238751",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -940,20 +1003,20 @@
 			"response": []
 		},
 		{
-			"name": "Изменение наименования категории id=2 кафе -> займы",
+			"name": "Изменение названия категории id=2 кафе -> займы",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "c2102b80-3172-4aca-9a9f-c44b72b87cff",
+						"id": "86afffdb-a9f5-441a-9ca2-74a3e4189e5d",
 						"exec": [
 							"pm.test(\"Successful PATCH category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
 							"    pm.expect(jsonData).to.include({\r",
-							"        id: 1, \r",
-							"        name: \"моя еда!\", \r",
-							"        parent_id: null, \r",
+							"        id: 2, \r",
+							"        name: \"займы\", \r",
+							"        parent_id: 1, \r",
 							"        user_id: 1 \r",
 							"    })\r",
 							"});\r",
@@ -1009,14 +1072,14 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "5c65be56-a7bd-4a90-9b84-31f836d80341",
+						"id": "d6f7cc01-c29c-4ea9-b18f-733a32ce59d3",
 						"exec": [
 							"pm.test(\"Successful PATCH category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
 							"    pm.expect(jsonData).to.include({\r",
 							"        id: 2, \r",
-							"        name: \"кафе\", \r",
+							"        name: \"займы\", \r",
 							"        parent_id: 4, \r",
 							"        user_id: 1 \r",
 							"    })\r",
@@ -1073,7 +1136,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "886a4c19-1c5b-469c-b7cc-8e9157f280d0",
+						"id": "4e1b80d4-77ec-459e-a9f1-6111f5b501a7",
 						"exec": [
 							"pm.test(\"Successful PATCH category\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(403);\r",
@@ -1099,7 +1162,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"parent_id\": \"5\"\r\n}",
+					"raw": "{\r\n    \"parent_id\": \"7\"\r\n}",
 					"options": {
 						"raw": {}
 					}
@@ -1129,7 +1192,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ed7a1216-8ba0-47a0-a691-047565228d0e",
+						"id": "6ae31135-3b24-4caa-9a53-5ec2181ff7a6",
 						"exec": [
 							"pm.test(\"Successful PATCH category\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(403);\r",
@@ -1161,7 +1224,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/categories/5",
+					"raw": "http://127.0.0.1:5000/categories/6",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -1172,7 +1235,7 @@
 					"port": "5000",
 					"path": [
 						"categories",
-						"5"
+						"6"
 					]
 				},
 				"description": "URL: /categories/<id>\r\n\r\nМетод: PATCH\r\n\r\nЗапрос:\r\n\r\n{\r\n    name: str?,\r\n    parent_category_id: int?\r\n}\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n400 - родительская категория не существует\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - такого id не существует"
@@ -1185,7 +1248,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "2ca01e15-1513-49ab-bc49-66553570bae2",
+						"id": "a86a3e97-1146-4ea2-a916-c86dceb271bf",
 						"exec": [
 							"pm.test(\"Status code of PATCH is 404\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(404);\r",
@@ -1241,7 +1304,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "89bd9577-f297-47ef-a8f2-95325b7ce3f4",
+						"id": "cd66418c-206a-4aef-9226-1472c8fff58d",
 						"exec": [
 							"pm.test(\"Status code of PATCH is 400 \", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(400);\r",
@@ -1297,7 +1360,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "5795692e-fc47-4280-afbe-8df849c4a862",
+						"id": "64655f50-5730-4268-b293-ac12572b4122",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -1343,7 +1406,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3564dbad-6e30-4ccb-b576-cf616a415cf4",
+						"id": "94f64706-904b-4fa4-954e-d7ef2a34738b",
 						"exec": [
 							"pm.test(\"Status code of PATCH is 400 \", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(401);\r",
@@ -1399,7 +1462,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "39e2fee8-d214-4096-84fb-1673285d0d04",
+						"id": "f60b9bcb-f66a-4a2b-8abb-effe49eac0e9",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -1445,14 +1508,14 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "4b9ac57c-b004-4b7d-8243-ea63542f82de",
+						"id": "5131b24d-ce70-494a-bf48-9892b20484ab",
 						"exec": [
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
 							"    pm.expect(jsonData).to.include({\r",
 							"        id: 1, \r",
-							"        name: \"моя еда!\", \r",
+							"        name: \"еда\", \r",
 							"        parent_id: null, \r",
 							"        user_id: 1 \r",
 							"    })\r",
@@ -1510,7 +1573,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a9bc4d53-e7f2-4982-b47d-643b31fed89d",
+						"id": "905ef930-9187-4d08-af37-0d90ed010f9c",
 						"exec": [
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(403);\r",
@@ -1544,7 +1607,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/categories/5",
+					"raw": "http://127.0.0.1:5000/categories/6",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -1555,7 +1618,7 @@
 					"port": "5000",
 					"path": [
 						"categories",
-						"5"
+						"6"
 					]
 				},
 				"description": "URL: /categories/<id>\r\n\r\nМетод: GET\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - категория другого пользователя\r\n404 - нет категории с данным id"
@@ -1568,7 +1631,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "42ae497d-2c52-4c28-803e-cb60df7748be",
+						"id": "2f42275a-6e05-4a54-9b02-cd20e377ac26",
 						"exec": [
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(404);\r",
@@ -1626,7 +1689,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "946a5acc-5682-4ca9-bd05-df56239d8cd0",
+						"id": "1d892636-24d5-461d-ab2b-4c30ef2756fb",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -1672,7 +1735,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "313ee0c6-a823-43b1-8a42-86324f4d906c",
+						"id": "f7357274-bfd5-4608-96bb-38a5e47c8069",
 						"exec": [
 							"pm.test(\"Successful GET category\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(401);\r",
@@ -1730,7 +1793,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "1db486c0-8f5b-4f63-9d9c-df898c983c90",
+						"id": "91f391e5-ebb0-4186-9522-0e48869c4f7e",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -1776,7 +1839,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "7a1e7ed2-db3b-49d4-a363-08237450f8d6",
+						"id": "40c09bea-82c9-4fe4-a3f6-c5fbe540a7b3",
 						"exec": [
 							"pm.test(\"Status code is 204\", function () {\r",
 							"    pm.response.to.have.status(204);\r",
@@ -1833,7 +1896,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "461da62e-e53e-4504-aed9-63983278149d",
+						"id": "0a9bf0ba-d0c8-4cc2-adcd-80b5dd44b786",
 						"exec": [
 							"pm.test(\"Status code is 204\", function () {\r",
 							"    pm.response.to.have.status(204);\r",
@@ -1889,7 +1952,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "35fe55e4-6b69-47e5-98df-643bbc182c17",
+						"id": "e1986349-be0d-41b6-bfd3-75710f266096",
 						"exec": [
 							"pm.test(\"Status code is 403\", function () {\r",
 							"    pm.response.to.have.status(403);\r",
@@ -1921,7 +1984,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/categories/5",
+					"raw": "http://127.0.0.1:5000/categories/7",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -1932,7 +1995,7 @@
 					"port": "5000",
 					"path": [
 						"categories",
-						"5"
+						"7"
 					]
 				},
 				"description": "URL: /categories/<id>\r\n\r\nМетод: DELETE\r\n\r\nЗапрос: пустой\r\n\r\nКод успешного ответа: 200\r\n\r\nОтвет:\r\n{\r\n    id: int,\r\n    name: str,\r\n    user_id: int,\r\n    parent_category_id: int?\r\n}\r\n\r\nКоды:\r\n200 - ОК\r\n401 - пользователь не авторизован\r\n403 - удаление категории другого пользователя\r\n404 - такого id не существует"
@@ -1945,7 +2008,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f1175f0f-e01a-434c-a42a-17349363014e",
+						"id": "50fc4a8c-d147-474d-bc63-265b6141f1e3",
 						"exec": [
 							"pm.test(\"Status code is 403\", function () {\r",
 							"    pm.response.to.have.status(404);\r",
@@ -2001,7 +2064,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8901ebc7-320b-47e1-86f6-b6fb8e93059d",
+						"id": "0f4c9c5e-6629-4bec-b0f1-f51515610b12",
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.eql(200);\r",
@@ -2047,7 +2110,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "1a61b344-0575-417c-81af-a99a78a98fe1",
+						"id": "5979f21b-ae8e-4862-a146-b23826fd3d37",
 						"exec": [
 							"pm.test(\"Status code is 204\", function () {\r",
 							"    pm.response.to.have.status(401);\r",
